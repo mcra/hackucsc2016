@@ -1,5 +1,5 @@
 from rest_framework import permissions, status, viewsets
-from rest_framework.decorators import detail_route
+from rest_framework.decorators import detail_route, list_route
 from rest_framework.response import Response
 
 from api.models import Event, Comment
@@ -22,6 +22,14 @@ class EventViewSet(viewsets.ModelViewSet):
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
 
+    # List all of the current user's events
+    @list_route(methods=['GET'])
+    def mine(self, request):
+        mine = self.get_queryset().filter(owner=self.request.user)
+        mine = EventSerializer(mine, many=True).data
+        return Response(mine)
+
+    # Get or post Comments on an Event
     @detail_route(methods=['GET', 'POST'])
     def comments(self, request, pk=None):
         if request.method == 'GET':
@@ -41,6 +49,7 @@ class EventViewSet(viewsets.ModelViewSet):
                 return Response(serializer.errors,
                                 status=status.HTTP_400_BAD_REQUEST)
 
+    # Get the member list or join or leave an Event
     @detail_route(methods=['GET', 'POST', 'DELETE'])
     def members(self, request, pk=None):
         if request.method == 'GET':
