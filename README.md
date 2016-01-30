@@ -14,4 +14,9 @@ virtualenv --distribute --prompt='(*) ' env
 
 # Install required Python packages
 pip install -r requirements.txt
+
+# Initial Django setup
+cd server
+python manage.py migrate
+python manage.py loaddata fixtures/*.json
 ```
