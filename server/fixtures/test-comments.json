@@ -1,0 +1,20 @@
+[
+{
+ "model": "api.comment",
+ "pk": 1,
+ "fields": {
+  "event": 2,
+  "owner": 3,
+  "text": "I'll see you at the trail head!"
+ }
+},
+{
+ "model": "api.comment",
+ "pk": 2,
+ "fields": {
+  "event": 2,
+  "owner": 6,
+  "text": "Sounds good!"
+ }
+}
+]
