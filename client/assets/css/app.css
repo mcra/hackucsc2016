@@ -14,3 +14,7 @@
   position:fixed;
   top:0;
 }
+
+.fixed-footer {
+  position: fixed;
+  bottom: 0px;
