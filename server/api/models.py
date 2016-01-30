@@ -6,6 +6,7 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.utils.timezone import now
 from rest_framework.authtoken.models import Token
+import requests
 
 
 class Event(models.Model):
@@ -20,6 +21,7 @@ class Event(models.Model):
     owner = models.ForeignKey('auth.User', related_name='owned_events')
     members = models.ManyToManyField('auth.User', related_name='joined_events')
     group_size = models.IntegerField(default=6)
+    # min group size
     # image
     # anonymous / active
 
@@ -41,8 +43,14 @@ class Comment(models.Model):
 
 class Prefs(models.Model):
     # A history of joined events?
-    # A picture
     owner = models.OneToOneField('auth.User', related_name='prefs')
+    img = models.URLField(blank=True)
+
+    class Meta:
+        verbose_name_plural = "prefs"
+
+    def __unicode__(self):
+        return "%s" % self.owner.username
 
 
 # Generate API tokens when users are created
@@ -50,3 +58,13 @@ class Prefs(models.Model):
 def create_auth_token(sender, instance=None, created=False, **kwargs):
     if created:
         Token.objects.create(user=instance)
+
+
+# Automatically create a Prefs object for each user
+# TODO: remove. grab a random img for the user
+@receiver(post_save, sender=settings.AUTH_USER_MODEL)
+def create_prefs(sender, instance=None, created=False, **kwargs):
+    if created:
+        req = requests.get('https://randomuser.me/api/')
+        img = req.json()['results'][0]['user']['picture']['medium']
+        Prefs.objects.create(owner=instance, img=img)

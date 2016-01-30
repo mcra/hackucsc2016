@@ -20,14 +20,16 @@
   <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-aria.min.js"></script>
   <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-messages.min.js"></script>
   <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-resource.min.js"></script>
 
   <!-- Angular Material Library -->
   <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.js"></script>
 
   <script src="assets/js/controllers.js"></script>
+  <script src="assets/js/services.js"></script>
   <!-- Your application bootstrap  -->
   <script type="text/javascript">    
-    angular.module('HackUCSC2016', ['ngMaterial', 'ngRoute', 'mcraControllers'])
+    angular.module('HackUCSC2016', ['ngMaterial', 'ngRoute', 'mcraControllers', 'mcraServices'])
     .config(function($mdThemingProvider, $mdIconProvider, $routeProvider){
       $mdThemingProvider.theme('default')
         .primaryPalette('brown')
@@ -37,8 +39,8 @@
         templateUrl: 'assets/templates/event-list.html',
         controller: 'EventController'
       }).
-      when('/aaron', {
-        templateUrl: 'assets/templates/testcomment.html',
+      when('/events/:eventId', {
+        templateUrl: 'assets/templates/event-detail.html',
         controller: 'EventDetailsController'
       }).
       when('/main', {

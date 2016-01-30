@@ -1,0 +1,18 @@
+[
+  { "name": "biking",
+    "location": "here",
+    "date": "today"
+  },
+  { "name": "surfing",
+    "location": "there",
+    "date": "tomorrow"
+  },
+  { "name": "dranks",
+    "location": "the old bar",
+    "date": "tomorrow"
+  },
+  { "name": "tai chi",
+    "location": "park",
+    "date": "tomorrow"
+  }
+]

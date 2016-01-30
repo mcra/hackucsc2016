@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from api.models import Comment, Event
+from api.models import Comment, Event, Prefs
 
 
 class CommentInline(admin.TabularInline):
@@ -15,3 +15,4 @@ class EventAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Event, EventAdmin)
+admin.site.register(Prefs)

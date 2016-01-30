@@ -1,0 +1,60 @@
+[
+{
+ "model": "api.event",
+ "pk": 1,
+ "fields": {
+  "name": "Surfing",
+  "datetime": "2016-01-30T22:42:17Z",
+  "location": "Cowells",
+  "owner": 8,
+  "group_size": 6,
+  "members": [
+   8
+  ]
+ }
+},
+{
+ "model": "api.event",
+ "pk": 2,
+ "fields": {
+  "name": "Mountain Biking",
+  "datetime": "2016-01-30T22:42:50Z",
+  "location": "Santa Cruz",
+  "owner": 3,
+  "group_size": 6,
+  "members": [
+   3,
+   4,
+   6
+  ]
+ }
+},
+{
+ "model": "api.event",
+ "pk": 3,
+ "fields": {
+  "name": "Tai Chi",
+  "datetime": "2016-01-30T22:44:39Z",
+  "location": "Grant Park",
+  "owner": 5,
+  "group_size": 6,
+  "members": [
+   5
+  ]
+ }
+},
+{
+ "model": "api.event",
+ "pk": 4,
+ "fields": {
+  "name": "Drinks",
+  "datetime": "2016-01-30T22:45:51Z",
+  "location": "515 Kitchen & Cocktails",
+  "owner": 7,
+  "group_size": 6,
+  "members": [
+   7
+  ]
+ }
+}
+]
