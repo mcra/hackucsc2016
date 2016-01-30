@@ -4,7 +4,7 @@ from rest_framework.response import Response
 
 from api.models import Event, Comment
 from api.permissions import IsOwner
-from api.serializers import CommentSerializer, EventSerializer
+from api.serializers import CommentSerializer, EventSerializer, UserSerializer
 
 
 class EventViewSet(viewsets.ModelViewSet):
@@ -31,11 +31,35 @@ class EventViewSet(viewsets.ModelViewSet):
         elif request.method == 'POST':
             serializer = CommentSerializer(data=request.data)
             serializer.initial_data['event'] = pk
+            serializer.initial_data['owner'] = self.request.user.pk
             if serializer.is_valid():
-                serializer.save(owner=self.request.user)
+                serializer.save()
                 return Response({'status': 'OK'})
             else:
                 return Response(serializer.errors,
+                                status=status.HTTP_400_BAD_REQUEST)
+
+    @detail_route(methods=['GET', 'POST'])
+    def members(self, request, pk=None):
+        if request.method == 'GET':
+            # Get the list of participants.
+            # TODO: Only available if you've joined.
+            # TODO: check for valid event
+            event = Event.objects.get(pk=pk)
+            members = UserSerializer(event.members.all(),
+                                     many=True)
+            resp = {'members': members.data}
+            return Response(resp)
+        elif request.method == 'POST':
+            # Join the event.
+            event = Event.objects.get(pk=pk)
+            # TODO: Only available if Event is active.
+            # TODO: Only if not already a member
+            if True:
+                event.members.add(request.user)
+                return Response({'status': 'OK'})
+            else:
+                return Response({'error': 'Event is full'},
                                 status=status.HTTP_400_BAD_REQUEST)
 
 

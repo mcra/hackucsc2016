@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from rest_framework import serializers
 
 from api.models import Event, Comment
@@ -17,12 +18,20 @@ class CommentSerializer(serializers.ModelSerializer):
 
 class EventSerializer(serializers.ModelSerializer):
     """
-    An Event serializer.
+    An Event serializer. Members are excluded since they can't be designated at
+    creation time.
     """
-    # TODO: serialize members by username
-    # TODO: don't show all possible members in the browseable API creation form
-    # TODO: exclude members. they can't be designated at creation
 
     class Meta:
         model = Event
-        exclude = ('owner',)
+        exclude = ('owner', 'members')
+
+
+class UserSerializer(serializers.ModelSerializer):
+    """
+    A User serializer.
+    """
+
+    class Meta:
+        model = User
+        fields = ('id', 'username',)
