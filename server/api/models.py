@@ -6,6 +6,7 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.utils.timezone import now
 from rest_framework.authtoken.models import Token
+import requests
 
 
 class Event(models.Model):
@@ -60,7 +61,10 @@ def create_auth_token(sender, instance=None, created=False, **kwargs):
 
 
 # Automatically create a Prefs object for each user
+# TODO: remove. grab a random img for the user
 @receiver(post_save, sender=settings.AUTH_USER_MODEL)
 def create_prefs(sender, instance=None, created=False, **kwargs):
     if created:
-        Prefs.objects.create(owner=instance)
+        req = requests.get('https://randomuser.me/api/')
+        img = req.json()['results'][0]['user']['picture']['medium']
+        Prefs.objects.create(owner=instance, img=img)
