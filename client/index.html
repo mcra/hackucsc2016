@@ -11,8 +11,44 @@
   <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.css">
   <link rel="stylesheet" href="assets/css/app.css"/>
 </head>
-<body ng-app="HackUCSC2016" ng-cloak>
+<body ng-app="HackUCSC2016" ng-controller="EventController as ec" ng-cloak>
 
+<h1>{{title}}</h1>
+<div layout="row">
+  <div flex="50">
+      <p>
+        Name: <input ng-change="makeQuery()" ng-model="query.actname">
+      </p>
+      <p>
+        Date/Time: <input ng-change="makeQuery()" ng-model="query.date">
+      </p>
+      <p>
+        Location: <input ng-change="makeQuery()" ng-model="query.location">
+      </p>
+  </div>
+  <div flex="50">
+
+      <div ng-repeat="event in filtered">
+      <h2>
+        {{event.actname}}
+      </h2>
+      <p>
+        {{event.date}}
+      <br>
+        {{event.location}}
+      </p>
+      </div>
+      <div ng-hide="filtered.length">
+        <h2>Nobody is doing that!</h2>
+        <md-button class="md-raised" ng-click="createEvent();">
+          Fuck it I'm doing it anyway!
+        </md-button>
+
+      </div>
+      <!--
+      -->
+  </div>
+</div>
 
 
   <!-- Angular Material requires Angular.js Libraries -->
@@ -24,12 +60,15 @@
   <!-- Angular Material Library -->
   <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.js"></script>
 
-  <!--
-  <script src="assets/js/x.js"></script>
-  -->
+  <script src="assets/js/controllers.js"></script>
   <!-- Your application bootstrap  -->
   <script type="text/javascript">    
-    angular.module('HackUCSC2016', ['ngMaterial']);
+    angular.module('HackUCSC2016', ['ngMaterial', 'mcraControllers'])
+    .config(function($mdThemingProvider, $mdIconProvider){
+      $mdThemingProvider.theme('default')
+        .primaryPalette('brown')
+        .accentPalette('indigo');
+    });
   </script>
 
 </body>
