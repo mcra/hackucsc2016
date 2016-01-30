@@ -9,14 +9,14 @@
 
   <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Roboto:400,500,700,400italic'>
   <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/app.css"/>
 </head>
 <body ng-app="HackUCSC2016" ng-cloak>
     <div ng-controller="CommentCtrl" ng-cloak>
       <md-content>
         <md-list>
-         <md-subheader class="md-no-sticky">3 line item, long paragraph (see on mobile)</md-subheader>
-            <md-list-item ng-repeat="msg in commentChain" class="md-3-line md-long-text">
+          <md-list-item ng-repeat="msg in commentChain" class="md-3-line md-long-text">
               <img ng-if="msg.who != curUser" ng-src="{{ msg.pic }}" class="md-avatar" alt="{{ msg.who }}" />
               <div class="md-list-item-text">
                 <h3 ng-if="msg.who != curUser">{{ msg.who }}</h3>
@@ -25,9 +25,20 @@
                 </p>
               </div>
               <img ng-if="msg.who == curUser" ng-src="{{ msg.pic }}" class="md-avatar" alt="{{ msg.who }}" />
+              <md-divider ></md-divider>
             </md-list-item>
        </md-list>
       </md-content>
+      <div style="width: 100%; position:relative; bottom:0; background: #fff;">
+        <section layout="row" layout-align="center center">
+          <md-input-container style="width: 50%";>
+            <input ng-model="message">
+          </md-input-container>
+          <md-button class="md-icon-button md-primary" aria-label="Send">
+          <md-icon class="material-icons">input</md-icon>
+          </md-button>
+        </section>
+      </div>
     </div>
   <!-- Angular Material requires Angular.js Libraries -->
   <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
@@ -61,6 +72,50 @@
         who: 'George Washington',
         text: 'Tertiary Secondary line text Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam massa quam. Nulla metus metus, ullamcorper vel, tincidunt sed, euismod in, nibh. Quisque volutpat condimentum velit. Class aptent taciti sociosqu ad litra torquent per conubia nostra, per inceptos himenaeos.'
       },
+      {
+        pic: 'assets/images/hack.jpg',
+        who: 'Erin Springer',
+        text: 'Seconday Secondary line text Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam massa quam. Nulla metus metus, ullamcorper vel, tincidunt sed, euismod in, nibh. Quisque volutpat condimentum velit. Class aptent taciti sociosqu ad litra torquent per conubia nostra, per inceptos himenaeos.'
+      },
+      {
+        pic: 'assets/images/face2.jpg',
+        who: 'George Washington',
+        text: 'Tertiary Secondary line text Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam massa quam. Nulla metus metus, ullamcorper vel, tincidunt sed, euismod in, nibh. Quisque volutpat condimentum velit. Class aptent taciti sociosqu ad litra torquent per conubia nostra, per inceptos himenaeos.'
+      },
+
+      {
+        pic: 'assets/images/hack.jpg',
+        who: 'Erin Springer',
+        text: 'Seconday Secondary line text Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam massa quam. Nulla metus metus, ullamcorper vel, tincidunt sed, euismod in, nibh. Quisque volutpat condimentum velit. Class aptent taciti sociosqu ad litra torquent per conubia nostra, per inceptos himenaeos.'
+      },
+      {
+        pic: 'assets/images/face2.jpg',
+        who: 'George Washington',
+        text: 'Tertiary Secondary line text Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam massa quam. Nulla metus metus, ullamcorper vel, tincidunt sed, euismod in, nibh. Quisque volutpat condimentum velit. Class aptent taciti sociosqu ad litra torquent per conubia nostra, per inceptos himenaeos.'
+      },
+
+      {
+        pic: 'assets/images/hack.jpg',
+        who: 'Erin Springer',
+        text: 'Seconday Secondary line text Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam massa quam. Nulla metus metus, ullamcorper vel, tincidunt sed, euismod in, nibh. Quisque volutpat condimentum velit. Class aptent taciti sociosqu ad litra torquent per conubia nostra, per inceptos himenaeos.'
+      },
+      {
+        pic: 'assets/images/face2.jpg',
+        who: 'George Washington',
+        text: 'Tertiary Secondary line text Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam massa quam. Nulla metus metus, ullamcorper vel, tincidunt sed, euismod in, nibh. Quisque volutpat condimentum velit. Class aptent taciti sociosqu ad litra torquent per conubia nostra, per inceptos himenaeos.'
+      },
+
+      {
+        pic: 'assets/images/hack.jpg',
+        who: 'Erin Springer',
+        text: 'Seconday Secondary line text Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam massa quam. Nulla metus metus, ullamcorper vel, tincidunt sed, euismod in, nibh. Quisque volutpat condimentum velit. Class aptent taciti sociosqu ad litra torquent per conubia nostra, per inceptos himenaeos.'
+      },
+      {
+        pic: 'assets/images/face2.jpg',
+        who: 'George Washington',
+        text: 'Tertiary Secondary line text Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam massa quam. Nulla metus metus, ullamcorper vel, tincidunt sed, euismod in, nibh. Quisque volutpat condimentum velit. Class aptent taciti sociosqu ad litra torquent per conubia nostra, per inceptos himenaeos.'
+      },
+
       {
         pic: 'assets/images/face3.jpg',
         who: 'Abraham Drinkin',
