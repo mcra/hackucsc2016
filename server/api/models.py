@@ -42,8 +42,14 @@ class Comment(models.Model):
 
 class Prefs(models.Model):
     # A history of joined events?
-    # A picture
     owner = models.OneToOneField('auth.User', related_name='prefs')
+    img = models.URLField(blank=True)
+
+    class Meta:
+        verbose_name_plural = "prefs"
+
+    def __unicode__(self):
+        return "%s" % self.owner.username
 
 
 # Generate API tokens when users are created
