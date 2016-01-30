@@ -25,4 +25,15 @@
     };
   }
 
+    mcraControllers.controller('EventDetailsController', function($scope, $http) {
+      // TODO use services
+      $http.get('assets/js/test-users.json').success(function(data) {
+        $scope.users = data;
+      });
+      $http.get('assets/js/test-comments.json').success(function(data) {
+        $scope.commentChain = data;
+      });
+      $scope.curUser = 'Erin Springer';
+    });
+
 })();
