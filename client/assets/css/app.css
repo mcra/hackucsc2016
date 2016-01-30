@@ -1,1 +1,11 @@
 /* CSS */
+md-grid-list md-grid-tile.event-tile {
+}
+md-grid-list md-grid-tile.event-tile .bg-image {
+  width: 100%;
+}
+md-grid-list md-grid-tile.event-tile md-grid-tile-footer, md-grid-list md-grid-tile.event-tile md-grid-tile-header {
+  height: initial;
+  max-height: 50%;
+  padding: 5px;
+}
