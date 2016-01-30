@@ -4,17 +4,14 @@
   /* Controllers */
   var mcraControllers = angular.module('mcraControllers', []);
 
-  mcraControllers.controller('EventController', ['$scope', '$http', '$filter', EventController]);
+  mcraControllers.controller('EventController', ['$scope', 'Event', '$filter', EventController]);
 
-  function EventController($scope, $http, $filter) {
+  function EventController($scope, Event, $filter) {
     $scope.title = "Get Bizzy";
     $scope.query = { name: '', location: '', date: '', };
 
-    // TODO some test data; get from the API
-    $http.get('assets/js/test-events.json').success(function(data) {
-      $scope.events = data;
-      $scope.filtered = $scope.events;
-    });
+    $scope.events = Event.query();
+    $scope.filtered = $scope.events;
 
     $scope.makeQuery = function() {
       $scope.filtered = $filter('filter')($scope.events, $scope.query);
