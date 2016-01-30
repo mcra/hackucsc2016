@@ -20,6 +20,7 @@ class Event(models.Model):
     owner = models.ForeignKey('auth.User', related_name='owned_events')
     members = models.ManyToManyField('auth.User', related_name='joined_events')
     group_size = models.IntegerField(default=6)
+    # min group size
     # image
     # anonymous / active
 
@@ -50,3 +51,10 @@ class Prefs(models.Model):
 def create_auth_token(sender, instance=None, created=False, **kwargs):
     if created:
         Token.objects.create(user=instance)
+
+
+# Automatically create a Prefs object for each user
+@receiver(post_save, sender=settings.AUTH_USER_MODEL)
+def create_prefs(sender, instance=None, created=False, **kwargs):
+    if created:
+        Prefs.objects.create(owner=instance)
