@@ -8,23 +8,23 @@
 
   function EventController($scope, $filter) {
     $scope.title = "Get Bizzy";
-    $scope.query = { actname: '', location: '', date: '', };
+    $scope.query = { name: '', location: '', date: '', };
 
     // TODO some test data; get from the API
     $scope.events = [
-      { actname: 'biking', 
+      { name: 'biking',
         location: 'here',
         date: 'today',
       },
-      { actname: 'surfing', 
+      { name: 'surfing',
         location: 'there',
         date: 'tomorrow',
       },
-      { actname: 'dranks', 
+      { name: 'dranks',
         location: 'the old bar',
         date: 'tomorrow',
       },
-      { actname: 'tai chi', 
+      { name: 'tai chi',
         location: 'park',
         date: 'tomorrow',
       },

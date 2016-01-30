@@ -1,0 +1,36 @@
+<h1>{{title}}</h1>
+<div layout="row">
+  <div flex="50">
+      <p>
+        Name: <input ng-change="makeQuery()" ng-model="query.name">
+      </p>
+      <p>
+        Date/Time: <input ng-change="makeQuery()" ng-model="query.date">
+      </p>
+      <p>
+        Location: <input ng-change="makeQuery()" ng-model="query.location">
+      </p>
+  </div>
+  <div flex="50">
+
+      <div ng-repeat="event in filtered">
+      <h2>
+        {{event.name}}
+      </h2>
+      <p>
+        {{event.date}}
+      <br>
+        {{event.location}}
+      </p>
+      </div>
+      <div ng-hide="filtered.length">
+        <h2>Nobody is doing that!</h2>
+        <md-button class="md-raised" ng-click="createEvent();">
+          Fuck it I'm doing it anyway!
+        </md-button>
+
+      </div>
+      <!--
+      -->
+  </div>
+</div>
