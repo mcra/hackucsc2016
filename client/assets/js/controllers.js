@@ -44,94 +44,15 @@
     };
   }
 
-    mcraControllers.controller('EventDetailsController', function($scope) {
-      var users = [
-      {
-        pic: 'assets/images/hack.jpg',
-        name: 'Aaron',
-      },
-      {
-        pic: 'assets/images/face3.jpg',
-        name: 'Rob',
-      },
-      {
-        pic: 'assets/images/face2.jpg',
-        name: 'Matt',
-      },
-      {
-        pic: 'assets/images/face3.jpg',
-        name: 'Chris',
-      }]
-
-      var commentChain = [ 
-      {
-        pic: 'assets/images/hack.jpg',
-        who: 'Erin Springer',
-        text: 'Primary Secondary line text Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam massa quam. Nulla metus metus, ullamcorper vel, tincidunt sed, euismod in, nibh. Quisque volutpat condimentum velit. Class aptent taciti sociosqu ad litra torquent per conubia nostra, per inceptos himenaeos.'
-      },
-      {
-        pic: 'assets/images/hack.jpg',
-        who: 'Erin Springer',
-        text: 'Seconday Secondary line text Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam massa quam. Nulla metus metus, ullamcorper vel, tincidunt sed, euismod in, nibh. Quisque volutpat condimentum velit. Class aptent taciti sociosqu ad litra torquent per conubia nostra, per inceptos himenaeos.'
-      },
-      {
-        pic: 'assets/images/face2.jpg',
-        who: 'George Washington',
-        text: 'Tertiary Secondary line text Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam massa quam. Nulla metus metus, ullamcorper vel, tincidunt sed, euismod in, nibh. Quisque volutpat condimentum velit. Class aptent taciti sociosqu ad litra torquent per conubia nostra, per inceptos himenaeos.'
-      },
-      {
-        pic: 'assets/images/hack.jpg',
-        who: 'Erin Springer',
-        text: 'Seconday Secondary line text Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam massa quam. Nulla metus metus, ullamcorper vel, tincidunt sed, euismod in, nibh. Quisque volutpat condimentum velit. Class aptent taciti sociosqu ad litra torquent per conubia nostra, per inceptos himenaeos.'
-      },
-      {
-        pic: 'assets/images/face2.jpg',
-        who: 'George Washington',
-        text: 'Tertiary Secondary line text Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam massa quam. Nulla metus metus, ullamcorper vel, tincidunt sed, euismod in, nibh. Quisque volutpat condimentum velit. Class aptent taciti sociosqu ad litra torquent per conubia nostra, per inceptos himenaeos.'
-      },
-
-      {
-        pic: 'assets/images/hack.jpg',
-        who: 'Erin Springer',
-        text: 'Seconday Secondary line text Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam massa quam. Nulla metus metus, ullamcorper vel, tincidunt sed, euismod in, nibh. Quisque volutpat condimentum velit. Class aptent taciti sociosqu ad litra torquent per conubia nostra, per inceptos himenaeos.'
-      },
-      {
-        pic: 'assets/images/face2.jpg',
-        who: 'George Washington',
-        text: 'Tertiary Secondary line text Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam massa quam. Nulla metus metus, ullamcorper vel, tincidunt sed, euismod in, nibh. Quisque volutpat condimentum velit. Class aptent taciti sociosqu ad litra torquent per conubia nostra, per inceptos himenaeos.'
-      },
-
-      {
-        pic: 'assets/images/hack.jpg',
-        who: 'Erin Springer',
-        text: 'Seconday Secondary line text Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam massa quam. Nulla metus metus, ullamcorper vel, tincidunt sed, euismod in, nibh. Quisque volutpat condimentum velit. Class aptent taciti sociosqu ad litra torquent per conubia nostra, per inceptos himenaeos.'
-      },
-      {
-        pic: 'assets/images/face2.jpg',
-        who: 'George Washington',
-        text: 'Tertiary Secondary line text Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam massa quam. Nulla metus metus, ullamcorper vel, tincidunt sed, euismod in, nibh. Quisque volutpat condimentum velit. Class aptent taciti sociosqu ad litra torquent per conubia nostra, per inceptos himenaeos.'
-      },
-
-      {
-        pic: 'assets/images/hack.jpg',
-        who: 'Erin Springer',
-        text: 'Seconday Secondary line text Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam massa quam. Nulla metus metus, ullamcorper vel, tincidunt sed, euismod in, nibh. Quisque volutpat condimentum velit. Class aptent taciti sociosqu ad litra torquent per conubia nostra, per inceptos himenaeos.'
-      },
-      {
-        pic: 'assets/images/face2.jpg',
-        who: 'George Washington',
-        text: 'Tertiary Secondary line text Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam massa quam. Nulla metus metus, ullamcorper vel, tincidunt sed, euismod in, nibh. Quisque volutpat condimentum velit. Class aptent taciti sociosqu ad litra torquent per conubia nostra, per inceptos himenaeos.'
-      },
-
-      {
-        pic: 'assets/images/face3.jpg',
-        who: 'Abraham Drinkin',
-        text: 'Secondary line text Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam massa quam. Nulla metus metus, ullamcorper vel, tincidunt sed, euismod in, nibh. Quisque volutpat condimentum velit. Class aptent taciti sociosqu ad litra torquent per conubia nostra, per inceptos himenaeos.'
-      }];
-      $scope.commentChain = commentChain;
+    mcraControllers.controller('EventDetailsController', function($scope, $http) {
+      // TODO use services
+      $http.get('assets/js/test-users.json').success(function(data) {
+        $scope.users = data;
+      });
+      $http.get('assets/js/test-comments.json').success(function(data) {
+        $scope.commentChain = data;
+      });
       $scope.curUser = 'Erin Springer';
-      $scope.users = users;
     });
-
 
 })();
