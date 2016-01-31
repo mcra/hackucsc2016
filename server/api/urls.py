@@ -7,6 +7,7 @@ from . import views
 
 router = DefaultRouter(trailing_slash=False)
 router.register(r'events', views.EventViewSet, base_name="event")
+router.register(r'users', views.UserViewSet, base_name="users")
 urlpatterns = [
     url(r'^', include(router.urls)),
     url(r'^api-auth/',
