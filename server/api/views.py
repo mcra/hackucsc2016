@@ -1,4 +1,6 @@
 from rest_framework import permissions, status, viewsets
+from rest_framework.authentication import (
+    TokenAuthentication, SessionAuthentication)
 from rest_framework.decorators import detail_route, list_route
 from rest_framework.response import Response
 
@@ -15,6 +17,7 @@ class EventViewSet(viewsets.ModelViewSet):
     # TODO: should delete be available?
     serializer_class = EventSerializer
     permission_classes = (permissions.IsAuthenticated, OwnerEdit)
+    authentication_classes = (TokenAuthentication, SessionAuthentication)
 
     def get_queryset(self):
         return Event.objects.all()
