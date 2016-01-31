@@ -119,7 +119,7 @@
           $scope.commentChain = Comments.query({id: evtId});
         });
     };
-    $scope.curUser = 'Erin Springer'; // TODO there is logic for styling around this
+    $scope.curUser = $cookieStore.get('username');
     $scope.goBack = function() { $window.history.back(); };
     $scope.userDetail = function(id) {
       $location.path('/users/'+id);
@@ -138,7 +138,7 @@
     };
   });
 
-  mcraControllers.controller('UserDetailsController', function($scope, User, UserEvents, $window, $http, $routeParams, $location, $mdToast, api) {
+  mcraControllers.controller('UserDetailsController', function($scope, User, UserEvents, $window, $http, $routeParams, $location, $cookieStore, $mdToast, api) {
     if (!api.init()) { $location.path('/login'); } // force log in
     $scope.goBack = function() { $window.history.back(); };
     $scope.getDetail = function(id) {
@@ -175,8 +175,9 @@
           );
     };
 
-
-    $scope.details = User.query({userId: $routeParams.userId});
+    $scope.details = User.query({userId: $routeParams.userId}, function(res) {
+      $scope.isMe = (res.username == $cookieStore.get('username'));
+    });
     $scope.events = UserEvents.query({userId: $routeParams.userId});
   });
 
@@ -190,8 +191,9 @@
     MyEvents.query(function(res) {
       $scope.details = res.user;
       $scope.events = res.events;
-
     });
+
+    $scope.isMe = true;
   });
 
   mcraControllers.controller('AuthController', function($scope, $location, $cookieStore, authorization, api) {

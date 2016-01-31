@@ -5,7 +5,7 @@
         <md-icon aria-label="keyboard_arrow_left" class="material-icons">keyboard_arrow_left</md-icon>
       </md-button>
       <h2 md-header-title flex>{{ details.username }}</h2>
-      <md-button class="md-tools" ng-click="flagToast()" aria-label="Edit Contact">
+      <md-button ng-show="!isMe" class="md-tools" ng-click="flagToast()" aria-label="Edit Contact">
         <md-icon aria-label="assistant Photo" class="material-icons">&#xE3A0;</md-icon>
       </md-button>
     </div>
