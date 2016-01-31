@@ -13,7 +13,7 @@
 </head>
 <body ng-app="HackUCSC2016" ng-cloak>
 
-  <div ng-view></div>
+  <div ng-view layout="column"></div>
 
   <!-- Angular Material requires Angular.js Libraries -->
   <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
@@ -37,7 +37,7 @@
         .accentPalette('indigo');
       $routeProvider.
       when('/', {
-        templateUrl: 'assets/templates/event-list.html',
+        templateUrl: 'assets/templates/main.html',
         controller: 'EventController'
       }).
       /*
