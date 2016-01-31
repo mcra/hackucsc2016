@@ -4,13 +4,32 @@
   /* Services */
   var mcraServices = angular.module('mcraServices', ['ngResource', 'ngCookies']);
 
-  mcraServices.factory('Event', ['$resource', EventService]);
-
-  function EventService($resource) {
+  mcraServices.factory('Events', ['$resource', EventsService]);
+  function EventsService($resource) {
     return $resource('/api/events/', {}, {
       query: {method:'GET', params:{}, isArray:true},
     });
   }
+
+  mcraServices.factory('Event', ['$resource', EventService]);
+  function EventService($resource) {
+    return $resource('/api/events/:id/', {}, {
+      query: {method:'GET', params:{}, isArray:false},
+    });
+  }
+
+  mcraServices.factory('Members', ['$resource', MembersService]);
+  function MembersService($resource) {
+    return $resource('/api/events/:id/members/', {}, {
+    });
+  }
+
+  mcraServices.factory('Comments', ['$resource',
+    function CommentsService($resource) {
+      return $resource('/api/events/:id/comments/', {id: '@id'}, {
+      });
+    }
+  ]);
 
   mcraServices.factory('authorization', function ($http) {
     var url = '/api/api-token-auth/';

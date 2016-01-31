@@ -4,14 +4,14 @@
   /* Controllers */
   var mcraControllers = angular.module('mcraControllers', []);
 
-  mcraControllers.controller('EventController', ['$scope', 'Event', '$filter', '$location', 'api', EventController]);
+  mcraControllers.controller('EventController', ['$scope', 'Events', '$filter', '$location', 'api', EventController]);
 
-  function EventController($scope, Event, $filter, $location, api) {
+  function EventController($scope, Events, $filter, $location, api) {
     if (!api.init()) { $location.path('/login'); } // force log in
     $scope.title = "Get Bizzy";
     $scope.query = { name: '', location: '', datetime: '', };
 
-    $scope.events = Event.query();
+    $scope.events = Events.query();
     $scope.filtered = $scope.events;
 
     $scope.makeQuery = function() {
@@ -24,7 +24,7 @@
       // TODO for now, transform whatever into a datetime
       act.datetime = (new Date()).toISOString();
       $scope.query.datetime = act.datetime;
-      Event.save(act); // post to api
+      Events.save(act); // post to api
       $scope.events.push(act); // TODO do if successfully saved
       $scope.makeQuery();
     };
@@ -61,16 +61,18 @@
         // to prevent interaction outside of dialog
     });
 
-  mcraControllers.controller('EventDetailsController', function($scope, $http, $location, api) {
+  mcraControllers.controller('EventDetailsController', function($scope, $http, $routeParams, $location, api, Event, Members, Comments) {
     if (!api.init()) { $location.path('/login'); } // force log in
-    // TODO use services
-    $http.get('assets/js/test-users.json').success(function(data) {
-      $scope.users = data;
-    });
-    $http.get('assets/js/test-comments.json').success(function(data) {
-      $scope.commentChain = data;
-    });
-    $scope.curUser = 'Erin Springer';
+
+    var evtId = $routeParams.eventId;
+    $scope.event = Event.query({id: evtId});
+    $scope.users = Members.query({id: evtId});
+    $scope.commentChain = Comments.query({id: evtId});
+    $scope.postComment = function() {
+      Comments.save({id: evtId, text: $scope.message});
+    };
+    $scope.curUser = 'Erin Springer'; // TODO there is logic for styling around this
+    $scope.goHome = function() { $location.path('/'); };
   });
 
   mcraControllers.controller('AuthController', function($scope, $location, $cookieStore, authorization, api) {
