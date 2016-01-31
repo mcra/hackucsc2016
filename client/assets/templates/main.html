@@ -1,5 +1,5 @@
-<div ng-controller="EventController" ng-cloak class="relative" layout="column" role="main">
-  <md-toolbar>
+<header md-page-header>
+  <md-toolbar scroll md-scroll-shrink>
     <div class="md-toolbar-tools" layout="row">
       <div flex="4">
         <md-icon aria-label="search" class="material-icons">search</md-icon>
@@ -11,11 +11,10 @@
       <md-button ng-click="myEvents()" flex="33">
         My Events
       </md-button>
-
     </div>
-   
   </md-toolbar>
-  <md-content style="padding-bottom: 56px;">
+</header>
+  <md-content style="padding-bottom: 56px; padding-top: 50px;">
     <md-section>
       <md-grid-list
         md-cols="2" md-cols-sm="3" md-cols-md="4" md-cols-gt-md="6"
@@ -41,10 +40,9 @@
     <!-- need to design Create Event button -->
   <md-section>
     <div ng-hide="filtered.length > 0 || waiting" class="md-padding" layout="column" layout-align="center center">
-      <h2>Awesome, let's schedule this!</h2>
-      <h3>Don't worry, we'll take care of the invites.</h3>
+      <h3>No matching events, start one!</h3>
       <form name='newEvent'>
-      <md-input-container class="md-block">
+        <md-input-container class="md-block">
         <input required type="text" ng-model="sub.name" placeholder="What are we doing?"/>
       </md-input-container>
 
