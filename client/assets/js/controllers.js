@@ -92,6 +92,13 @@
           $scope.joined = true;
         }
       }
+      // hide usernames (except you) if there are < 3 people
+      // TODO: should be done on API side for actual anonymity
+      if (res.length < 3) {
+        for (var j=0; j<res.length; j++) {
+          res[j].username = "";
+        }
+      }
     });
 
     $scope.commentChain = Comments.query({id: evtId});
