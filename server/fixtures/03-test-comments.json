@@ -16,5 +16,95 @@
   "owner": 6,
   "text": "Sounds good!"
  }
+},
+{
+ "model": "api.comment",
+ "pk": 3,
+ "fields": {
+  "event": 1,
+  "owner": 6,
+  "text": "Just got my new board!"
+ }
+},
+{
+ "model": "api.comment",
+ "pk": 4,
+ "fields": {
+  "event": 1,
+  "owner": 6,
+  "text": "Can't wait!"
+ }
+},
+{
+ "model": "api.comment",
+ "pk": 5,
+ "fields": {
+  "event": 10,
+  "owner": 3,
+  "text": "Have any ideas?"
+ }
+},
+{
+ "model": "api.comment",
+ "pk": 6,
+ "fields": {
+  "event": 10,
+  "owner": 6,
+  "text": "Dude. Tinder for Cats."
+ }
+},
+{
+ "model": "api.comment",
+ "pk": 7,
+ "fields": {
+  "event": 9,
+  "owner": 6,
+  "text": "We're all going to hate each other by the end of this."
+ }
+},
+{
+ "model": "api.comment",
+ "pk": 8,
+ "fields": {
+  "event": 6,
+  "owner": 8,
+  "text": "Hey! Which trail should we look at doing?"
+ }
+},
+{
+ "model": "api.comment",
+ "pk": 9,
+ "fields": {
+  "event": 6,
+  "owner": 5,
+  "text": "Have you been to the observation deck?"
+ }
+},
+{
+ "model": "api.comment",
+ "pk": 10,
+ "fields": {
+  "event": 6,
+  "owner": 5,
+  "text": "It's gorgeous up there."
+ }
+},
+{
+ "model": "api.comment",
+ "pk": 11,
+ "fields": {
+  "event": 5,
+  "owner": 6,
+  "text": "WHY WONT YOU LOVE ME RACCOONS?!"
+ }
+},
+{
+ "model": "api.comment",
+ "pk": 12,
+ "fields": {
+  "event": 4,
+  "owner": 4,
+  "text": "Can't wait!"
+ }
 }
 ]
