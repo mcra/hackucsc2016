@@ -1,25 +1,30 @@
-<header md-page-header style="height: 50vh;">
-  <md-toolbar scroll>
+<header md-page-header>
+  <md-toolbar>
     <div class="md-toolbar-tools">
-      <md-button class="md-tools" aria-label="Go Back">
+      <md-button class="md-tools" aria-label="Go Back" ng-click="goHome()">
         <md-icon aria-label="keyboard_arrow_left" class="material-icons">keyboard_arrow_left</md-icon>
       </md-button>
       <h2 md-header-title flex>{{ details.username }}</h2>
       <md-button class="md-tools" aria-label="Edit Contact">
         <md-icon aria-label="assistant Photo" class="material-icons">&#xE3A0;</md-icon>
       </md-button>
-      <md-button class="md-tools" aria-label="More">
-        <md-icon aria-label="assistant Photo" class="material-icons">&#xE3E3;</md-icon>
-      </md-button>
     </div>
   </md-toolbar>
-</header>
-<md-content>
+  </header>
+<md-content class="md-padding">
   <section>
-  <img ng-src="{{ details.prefs.img }}">
+    <div layout="column" layout-align="center center">
+      <img ng-src="{{ details.prefs.img }}" class="large-headshot">
+    </div>
   </section>
   <section>
-  <md-section>
+    <div layout="column" layout-align="center center" class="pad-text">
+      <h1 ng-if="events.length > 1">{{ details.username }} has attended {{ events.length }} events</h1>
+      <h1 ng-if="events.length == 1">{{ details.username }} has attended {{ events.length }} event</h1>
+      <h1 ng-if="events.length == 0">{{ details.username }} hasn't attended any events</h1>
+    </div>
+  </section>
+  <section>
       <md-grid-list
         md-cols="1" md-cols-sm="2" md-cols-md="4" md-cols-gt-md="6"
         md-row-height-gt-md="1:1" md-row-height="1:1"

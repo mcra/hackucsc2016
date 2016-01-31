@@ -54,3 +54,11 @@ md-grid-list md-grid-tile md-grid-tile-footer h4, md-grid-list md-grid-tile md-g
 #login-form md-input-container {
   margin:0;
 }
+
+.large-headshot {
+  border-radius: 50%;
+}
+
+.pad-text {
+  padding-bottom:20px;
+}
