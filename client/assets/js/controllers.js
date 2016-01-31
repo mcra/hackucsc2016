@@ -18,6 +18,7 @@
 
     $scope.makeQuery = function() {
       $scope.filtered = $filter('filter')($scope.events, $scope.searcher);
+      console.log($scope.filtered[0]);
       $scope.sub.name = $scope.searcher
     };
 
