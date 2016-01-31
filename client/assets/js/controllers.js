@@ -17,8 +17,15 @@
     $scope.filtered = $scope.events;
 
     $scope.makeQuery = function() {
-      $scope.filtered = $filter('filter')($scope.events, $scope.searcher);
-      $scope.sub.name = $scope.searcher;
+      // process the search string to pull out location (TODO and time)
+      var terms = $scope.searcher.split(/\s+at?\s?/);
+      var ename = terms[0].trim();
+      var elocation = terms[1];
+      if (elocation) { elocation = elocation.trim(); }
+      var qdict = {name: ename, location: elocation};
+      $scope.filtered = $filter('filter')($scope.events, qdict);
+      $scope.sub.name = ename;
+      $scope.sub.location = elocation;
     };
 
     $scope.createEvent = function() {
