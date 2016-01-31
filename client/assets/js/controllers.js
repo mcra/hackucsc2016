@@ -49,10 +49,40 @@
     };
   }
     
-  mcraControllers.controller('EventDetailsController', function($scope, $http, $routeParams, $cookieStore, $location, api, Event, Members, Comments) {
+  mcraControllers.controller('EventDetailsController', function($scope, $http, $routeParams, $cookieStore, $location, $mdToast, api, Event, Members, Comments) {
     if (!api.init()) { $location.path('/login'); } // force log in
-
     var evtId = $routeParams.eventId;
+
+    var last = {
+      bottom: false,
+      top: true,
+      left: false,
+      right: true
+    };
+    function sanitizePosition() {
+      var current = $scope.toastPosition;
+      if ( current.bottom && last.top ) current.top = false;
+      if ( current.top && last.bottom ) current.bottom = false;
+      if ( current.right && last.left ) current.left = false;
+      if ( current.left && last.right ) current.right = false;
+      last = angular.extend({},current);
+    }
+    $scope.toastPosition = angular.extend({},last);
+    $scope.getToastPosition = function() {
+      sanitizePosition();
+      return Object.keys($scope.toastPosition)
+        .filter(function(pos) { return $scope.toastPosition[pos]; })
+        .join(' ');
+    };
+    $scope.flagToast = function() {
+      $mdToast.show(
+          $mdToast.simple()
+          .textContent('This event has been flagged!')
+          .position($scope.getToastPosition())
+          .hideDelay(2000)
+          );
+    };
+
     $scope.event = Event.query({id: evtId});
     $scope.users = Members.query({id: evtId}, function(res) {
       $scope.joined = false;
@@ -92,12 +122,44 @@
     };
   });
 
-  mcraControllers.controller('UserDetailsController', function($scope, User, UserEvents, $http, $routeParams, $location, api) {
+  mcraControllers.controller('UserDetailsController', function($scope, User, UserEvents, $http, $routeParams, $location, $mdToast, api) {
     if (!api.init()) { $location.path('/login'); } // force log in
     $scope.goHome = function() { $location.path('/'); };
     $scope.getDetail = function(id) {
       $location.path('/events/'+id);
     };
+
+    var last = {
+      bottom: false,
+      top: true,
+      left: false,
+      right: true
+    };
+    function sanitizePosition() {
+      var current = $scope.toastPosition;
+      if ( current.bottom && last.top ) current.top = false;
+      if ( current.top && last.bottom ) current.bottom = false;
+      if ( current.right && last.left ) current.left = false;
+      if ( current.left && last.right ) current.right = false;
+      last = angular.extend({},current);
+    }
+    $scope.toastPosition = angular.extend({},last);
+    $scope.getToastPosition = function() {
+      sanitizePosition();
+      return Object.keys($scope.toastPosition)
+        .filter(function(pos) { return $scope.toastPosition[pos]; })
+        .join(' ');
+    };
+    $scope.flagToast = function() {
+      $mdToast.show(
+          $mdToast.simple()
+          .textContent('This user has been flagged!')
+          .position($scope.getToastPosition())
+          .hideDelay(2000)
+          );
+    };
+
+
     $scope.details = User.query({userId: $routeParams.userId});
     $scope.events = UserEvents.query({userId: $routeParams.userId});
   });
