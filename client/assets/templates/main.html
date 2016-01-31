@@ -43,7 +43,7 @@
   </md-section>
     <!-- need to design Create Event button -->
   <md-section>
-    <div ng-hide="filtered.length" class="md-padding" layout="column" layout-align="center center">
+    <div ng-hide="filtered.length > 0 || waiting" class="md-padding" layout="column" layout-align="center center">
       <h2>Awesome, let's schedule this!</h2>
       <h3>Don't worry, we'll take care of the invites</h3>
       <md-input-container class="md-block">

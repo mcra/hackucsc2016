@@ -13,7 +13,10 @@
     $scope.sub = { group_size: 3, name: '', location: '', datetime: new Date()};
     $scope.showSearch = false;
 
-    $scope.events = Events.query();
+    $scope.waiting = true; // waiting for events to load from API
+    $scope.events = Events.query(function() {
+      $scope.waiting = true;
+    });
     $scope.filtered = $scope.events;
 
     $scope.makeQuery = function() {
