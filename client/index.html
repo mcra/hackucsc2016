@@ -33,21 +33,16 @@
     angular.module('HackUCSC2016', ['ngMaterial', 'ngRoute', 'mcraControllers', 'mcraServices'])
     .config(function($mdThemingProvider, $mdIconProvider, $routeProvider, $httpProvider){
       $mdThemingProvider.theme('default')
-        .primaryPalette('brown')
-        .accentPalette('indigo');
+        .accentPalette('green');
       // $httpProvider.interceptors.push('httpInterceptor'); // TODO
       $routeProvider.
       when('/', {
-        templateUrl: 'assets/templates/event-list.html',
+        templateUrl: 'assets/templates/main.html',
         controller: 'EventController'
       }).
       when('/events/:eventId', {
         templateUrl: 'assets/templates/event-detail.html',
         controller: 'EventDetailsController'
-      }).
-      when('/main', {
-        templateUrl: 'assets/templates/main.html',
-        controller: 'MainController'
       }).
       when('/login', {
         templateUrl: 'assets/templates/login.html',
