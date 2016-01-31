@@ -27,7 +27,11 @@
       // TODO for now, transform whatever into a datetime
       act.datetime = (new Date()).toISOString();
       $scope.query.datetime = act.datetime;
-      Events.save($scope.sub); // post to api
+      Events.save($scope.sub)
+        .$promise.then(function(e) {
+          console.log('/events/' + e.id);
+          $location.path('/events/' + e.id);
+      }); // post to api
       $scope.events.push($scope.sub); // TODO do if successfully saved
       $scope.makeQuery();
       $scope.showSearch = false;
