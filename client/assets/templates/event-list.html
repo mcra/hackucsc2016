@@ -1,44 +1,8 @@
 <!-- <h1>{{title}}</h1>-->
  
-<div layout="column">
- 
-  <md-toolbar flex md-scroll-shrink ng-if="true">
-    <div class="md-toolbar-tools" layout="row">
+<div layout="column" style="height:100vh;">
 
-       <div flex="25">
-        <md-menu>
-          <md-button aria-label="what" ng-click="ctrl.openMenu($mdOpenMenu, $event)">
-            What?
-          </md-button>
-          <md-menu-content width="4">
-            <md-menu-item>
-              <md-input-container>
-                <label>What?</label>
-                <input ng-model="event.name">
-              </md-input-container>
-            </md-menu-item>
-          </md-menu-content>
-        </md-menu>
-      </div>
-      <div flex="25">
-       <md-button>
-         Where?
-       </md-button>
-      </div>
-      <div flex="25">
-       <md-button>
-         When?
-       </md-button>
-      </div>
-      <div flex="25">
-       <md-button>
-         Who?
-       </md-button>
-      </div>
-    </div>
-  </md-toolbar>
-  
-  <md-content flex>
+  <md-content flex >
     <md-grid-list
         md-cols="2" md-cols-sm="3" md-cols-md="4" md-cols-gt-md="6"
         md-row-height-gt-md="1:1" md-row-height="1:1"
@@ -62,15 +26,77 @@
     </md-grid-list>
     
     <!-- need to design Create Event button -->
-    <div ng-hide="filtered.length">
+    <md-content ng-hide="filtered.length" layout-padding>
       <h2>Nobody is doing that!</h2>
       <md-button class="md-raised" ng-click="createEvent();">
         Fuck it I'm doing it anyway!
       </md-button>
-    </div>
+    </md-content>
   </md-content> 
  
-  
+ 
+  <md-toolbar style="margin-bottom:35px;">
+    <div class="md-toolbar-tools" layout="row">
+
+       <div flex="25" ng-controller="FilterMenuCtrl as ctrl">
+        <md-menu>
+          <md-button aria-label="what" ng-click="ctrl.openMenu($mdOpenMenu, $event)">
+            What?
+          </md-button>
+          <md-menu-content width="5">
+           
+            <md-menu-item>
+              <md-input-container>
+                <label>What do you want to do?</label>
+                <input ng-change="makeQuery()" ng-model="query.name">
+              </md-input-container>
+            </md-menu-item>
+            
+          </md-menu-content>
+        </md-menu>
+      </div>
+      <div flex="25" ng-controller="FilterMenuCtrl as ctrl">
+        <md-menu>
+          <md-button aria-label="what" ng-click="ctrl.openMenu($mdOpenMenu, $event)">
+            Where?
+          </md-button>
+          <md-menu-content width="5">
+           
+            <md-menu-item>
+              <md-input-container>
+                <label>Where do you want to go?</label>
+                <input ng-change="makeQuery()" ng-model="query.location">
+              </md-input-container>
+            </md-menu-item>
+            
+          </md-menu-content>
+        </md-menu>
+      </div>
+      <div flex="25" ng-controller="FilterMenuCtrl as ctrl">
+        <md-menu>
+          <md-button aria-label="what" ng-click="ctrl.openMenu($mdOpenMenu, $event)">
+            When?
+          </md-button>
+          <md-menu-content width="5">
+           
+            <md-menu-item>
+              <md-input-container>
+                <label>When do you want to go?</label>
+                <input ng-change="makeQuery()" ng-model="query.date">
+              </md-input-container>
+            </md-menu-item>
+            
+          </md-menu-content>
+        </md-menu>
+      </div>
+      <div flex="25">
+       <md-button>
+         Who?
+       </md-button>
+      </div>
+    </div>
+  </md-toolbar>
+    
   
 </div>
 
