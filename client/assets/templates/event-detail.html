@@ -32,7 +32,7 @@
         <div layout="column">
             <h2 class="header-text">{{event.name}}</h2>
             <h3 class="header-text">{{event.location}}</h3>
-            <h3 class="header-text">{{event.datetime}}</h3>
+            <h3 class="header-text">{{event.datetime | date:"EEEE 'at' ha"}}</h4>
         </div>
       </form>
       <div ng-show="api.init()">
