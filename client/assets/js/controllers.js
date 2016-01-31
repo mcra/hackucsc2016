@@ -27,9 +27,10 @@
       // TODO for now, transform whatever into a datetime
       act.datetime = (new Date()).toISOString();
       $scope.query.datetime = act.datetime;
-      Events.save($scope.sub); // post to api
-      $scope.events.push($scope.sub); // TODO do if successfully saved
-      $scope.makeQuery();
+      Events.save($scope.sub)
+        .$promise.then(function(e) {
+          $location.path('/events/' + e.id);
+      }); // post to api
       $scope.showSearch = false;
       $scope.searcher = '';
     };
@@ -51,9 +52,12 @@
     $scope.users = Members.query({id: evtId});
     $scope.commentChain = Comments.query({id: evtId});
     $scope.postComment = function() {
-      Comments.save({id: evtId, text: $scope.message});
+      Comments.save({id: evtId, text: $scope.message})
+        .$promise.then(function(e) {
+          $scope.message = undefined;
+          $scope.commentChain = Comments.query({id: evtId});
+        });
     };
-    // TODO make comment show immediately
     $scope.curUser = 'Erin Springer'; // TODO there is logic for styling around this
     $scope.goHome = function() { $location.path('/'); };
   });
