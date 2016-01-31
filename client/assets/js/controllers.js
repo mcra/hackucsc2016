@@ -29,11 +29,8 @@
       $scope.query.datetime = act.datetime;
       Events.save($scope.sub)
         .$promise.then(function(e) {
-          console.log('/events/' + e.id);
           $location.path('/events/' + e.id);
       }); // post to api
-      $scope.events.push($scope.sub); // TODO do if successfully saved
-      $scope.makeQuery();
       $scope.showSearch = false;
       $scope.searcher = '';
     };
