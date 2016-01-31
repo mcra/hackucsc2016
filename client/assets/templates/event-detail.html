@@ -25,7 +25,7 @@
   <div class="dark-background" >
     <md-subheader class="md-primary">Participants</md-subheader>
     <md-list layout-padding layout-wrap layout layout-align="center center" class="avatar-list">
-      <md-list-item ng-hide="user.username" class="md-3-line" ng-repeat="user in users" layout="column" ng-click="userDetail(user.id)">
+      <md-list-item ng-hide="user.username" class="md-3-line" ng-repeat="user in users" layout="column" ng-click="null">
         <md-icon style="font-size: 46px; margin-top: 2px" class="material-icons">account_circle</md-icon>
       </md-list-item>
       <md-list-item ng-show="user.username" class="md-3-line" ng-repeat="user in users" layout="column" ng-click="userDetail(user.id)">
