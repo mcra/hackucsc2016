@@ -40,6 +40,19 @@
     };
   });
 
+  mcraServices.factory('User', ['$resource', UserService]);
+  function UserService($resource) {
+    return $resource('/api/users/:userId/', {}, {
+      query: {method:'GET', params:{}, isArray:false},
+    });
+  }
+  mcraServices.factory('UserEvents', ['$resource', UserEventsService]);
+  function UserEventsService($resource) {
+    return $resource('/api/users/:userId/events/', {}, {
+      query: {method:'GET', params:{}, isArray:true},
+    });
+  }
+
   /*
   mcraServices.factory('httpInterceptor', function httpInterceptor ($q, $window, $location) {
     console.log('intercept'); // TODO
