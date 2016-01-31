@@ -1,6 +1,9 @@
 <!-- <h1>{{title}}</h1>-->
-  <md-toolbar>
-    <div class="md-toolbar-tools" layout="row" ms-scroll-shrink>
+ 
+<div layout="column">
+ 
+  <md-toolbar flex md-scroll-shrink ng-if="true">
+    <div class="md-toolbar-tools" layout="row">
 
        <div flex="25">
         <md-menu>
@@ -35,24 +38,11 @@
     </div>
   </md-toolbar>
   
-  <!--
-  <md-toolbar md-scroll-shrink ng-cloak>
-    <p>
-        Name: <input ng-change="makeQuery()" ng-model="query.name">
-      </p>
-      <p>
-        Date/Time: <input ng-change="makeQuery()" ng-model="query.date">
-      </p>
-      <p>
-        Location: <input ng-change="makeQuery()" ng-model="query.location">
-      </p>
-  </md-toolbar> -->
-
-  <md-content>
+  <md-content flex>
     <md-grid-list
         md-cols="2" md-cols-sm="3" md-cols-md="4" md-cols-gt-md="6"
         md-row-height-gt-md="1:1" md-row-height="1:1"
-        md-gutter="5px" md-gutter-gt-sm="4px" >
+        md-gutter="5px" md-gutter-gt-sm="5px" >
         
       <md-grid-tile ng-repeat="event in filtered"
                       md-rowspan="1"
@@ -78,5 +68,25 @@
         Fuck it I'm doing it anyway!
       </md-button>
     </div>
-  </md-content>
+  </md-content> 
+ 
+  
+  
+</div>
+
+  
+  <!--
+  <md-toolbar md-scroll-shrink ng-cloak>
+    <p>
+        Name: <input ng-change="makeQuery()" ng-model="query.name">
+      </p>
+      <p>
+        Date/Time: <input ng-change="makeQuery()" ng-model="query.date">
+      </p>
+      <p>
+        Location: <input ng-change="makeQuery()" ng-model="query.location">
+      </p>
+  </md-toolbar> -->
+
+  
 
