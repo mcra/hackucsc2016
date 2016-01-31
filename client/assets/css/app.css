@@ -28,12 +28,12 @@ md-grid-list {
 md-grid-list md-grid-tile.event-tile {
   overflow: hidden;
 }
-md-grid-list md-grid-tile.event-tile img.bg-image {
+md-grid-list md-grid-tile.event-tile img.bg-image, .page-header img.header-background {
   width: 120%;
   left:-10%;
   top:-10%;
-  -webkit-filter: blur(5px);
-  filter: blur(5px);
+  -webkit-filter: blur(4px);
+  filter: blur(4px);
 }
 md-grid-list md-grid-tile.event-tile md-grid-tile-footer, md-grid-list md-grid-tile.event-tile md-grid-tile-header {
   height: initial;
@@ -43,6 +43,7 @@ md-grid-list md-grid-tile.event-tile md-grid-tile-footer, md-grid-list md-grid-t
 }
 md-grid-list md-grid-tile md-grid-tile-footer h3, md-grid-list md-grid-tile md-grid-tile-footer h4, md-grid-list md-grid-tile md-grid-tile-header h3, md-grid-list md-grid-tile md-grid-tile-header h4 {
   margin:0;
+  text-transform: capitalize;
 }
 md-grid-list md-grid-tile md-grid-tile-footer h3, md-grid-list md-grid-tile md-grid-tile-header h3 {
   font-size: 16px;
@@ -54,7 +55,18 @@ md-grid-list md-grid-tile md-grid-tile-footer h4, md-grid-list md-grid-tile md-g
 #login-form md-input-container {
   margin:0;
 }
-
+.dark-background {
+  background: hsla(0,0%,0%,.1);
+}
+.avatar-list md-list-item-inner .avatar-text {
+  margin-top:0;
+  line-height:1;
+  text-align: center;
+}
+header.page-header {
+  overflow: hidden;
+  height: 50vh;
+}
 .large-headshot {
   border-radius: 9999px;
 }

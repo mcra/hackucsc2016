@@ -35,7 +35,8 @@
     .config(function($mdThemingProvider, $mdIconProvider, $routeProvider, $httpProvider){
       $mdThemingProvider.theme('default')
         .dark()
-        .accentPalette('green');
+        .primaryPalette('lime')
+        .accentPalette('light-green');
       // $httpProvider.interceptors.push('httpInterceptor'); // TODO
       $routeProvider.
       when('/', {

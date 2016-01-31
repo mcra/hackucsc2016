@@ -1,5 +1,7 @@
-<header md-page-header style="height: 50vh;">
-  <div md-header-picture style="background-image:url({{event.img}})"></div>
+<header class="page-header" md-page-header style="height: 50vh;">
+  <div md-header-picture >
+    <img class="header-background" src="{{event.img}}" alt="">
+  </div>
   <md-toolbar scroll>
     <div class="md-toolbar-tools">
       <md-button class="md-tools" aria-label="Go Back" ng-click="goHome()">
@@ -23,14 +25,14 @@
 </header>
 <md-content>
   <section>
-  <div style="background: hsla(0,0%,0%,.1);">
+  <div class="dark-background" >
     <md-subheader class="md-primary">Participants</md-subheader>
-      <md-list layout-padding layout-wrap layout layout-align="center center">
-        <md-list-item class="md-3-line" ng-repeat="user in users" layout="column" ng-click="userDetail(user.id)">
-          <img ng-src="{{user.prefs.img}}" class="md-avatar" alt="{{user.username}}">
-          <p align="center">{{ user.username }}</p>
-        </md-list-item>
-      </md-list>
+    <md-list layout-padding layout-wrap layout layout-align="center center" class="avatar-list">
+      <md-list-item class="md-3-line" ng-repeat="user in users" layout="column" ng-click="userDetail(user.id)">
+        <img ng-src="{{user.prefs.img}}" class="md-avatar" alt="{{user.username}}">
+        <p class="avatar-text">{{ user.username }}</p>
+      </md-list-item>
+    </md-list>
     </div>
   </section>
   <section>
@@ -52,8 +54,8 @@
       </md-list-item>
     </md-list>
   </section>
-  <section>
-      <div layout-align="center center" layout flex="70" flex-offset="15">
+  <section class="dark-background">
+      <div  layout-align="center center" layout flex="70" flex-offset="15">
       <md-input-container flex="grow">
         <input type="text" ng-model="message" placeholder="Say something!">
       </md-input-container>
