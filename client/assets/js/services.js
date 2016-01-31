@@ -15,6 +15,8 @@
   function EventService($resource) {
     return $resource('/api/events/:id/', {}, {
       query: {method:'GET', params:{}, isArray:false},
+      join: {method:'POST', url:'/api/events/:id/members', params:{id: '@id'}, isArray:false},
+      leave: {method:'DELETE', url:'/api/events/:id/members', params:{id: '@id'}, isArray:false},
     });
   }
 
