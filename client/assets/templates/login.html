@@ -1,11 +1,37 @@
-<form class="pure-form" ng-submit="login()" ng-hide="api.init()">
-  <input placeholder="username" name="username" ng-model="username" required/>
-  <input type="password" placeholder="password" name="password" ng-model="password" required/>
-  <button type="submit">Sign In</button>
-</form>
-<div ng-show="api.init()">
-  <button ng-click="logout()">Sign Out</button>
+<div layout=row class="md-padding">
+
+  <div flex></div> <!-- padding -->
+
+  <div flex="80" flex-sm="60" flex-gt-sm="40" layout="column" md-padding id="login-form">
+    <form class="pure-form" ng-submit="login()" ng-hide="api.init()">
+      <div layout="row">
+        <md-input-container flex>
+        <label>username</label>
+        <input type="text" required ng-model="username">
+      </md-input-container>
+      </div>
+      <div layout="row">
+        <md-input-container flex>
+        <label>password</label>
+        <input type="password" required ng-model="password">
+      </md-input-container>
+      </div>
+      <div layout="row">
+        <button class="md-button md-raised md-primary" type="submit" flex>Sign In</button>
+      </div>
+    </form>
+    <div ng-show="api.init()">
+      <button class="md-button" ng-click="logout()">Sign Out</button>
+    </div>
+    <div ng-show="errors">
+      <p ng-repeat="error in errors">{{error}}</p>
+    </div>
+
+  </div>
+
+  <div flex></div> <!-- padding -->
+
 </div>
-<div ng-show="errors">
-  <p ng-repeat="error in errors">{{error}}</p>
-</div>
+
+
+ 
