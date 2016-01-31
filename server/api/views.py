@@ -100,6 +100,6 @@ class UserViewSet(mixins.RetrieveModelMixin,
     @list_route(methods=['GET'])
     def me(self, request, pk=None):
         user = UserSerializer(self.request.user)
-        events = Event.objects.filter(owner=pk)
+        events = Event.objects.filter(owner=self.request.user.pk)
         events = EventSerializer(events, many=True)
         return Response({'user': user.data, 'events': events.data})
