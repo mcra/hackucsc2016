@@ -45,6 +45,8 @@
           <p ng-if="message.owner.username != curUser">
             {{ message.text }}
           </p>
+          <h3 ng-if="message.owner.username == curUser" style="padding-bottom:
+            5px;" align="right">{{ message.owner.username }}</h3>
           <p ng-if="message.owner.username == curUser" align="right">
             {{ message.text }}
           </p>
