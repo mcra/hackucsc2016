@@ -84,6 +84,7 @@
 
   mcraControllers.controller('UserDetailsController', function($scope, User, UserEvents, $http, $routeParams, $location, api) {
     if (!api.init()) { $location.path('/login'); } // force log in
+    $scope.goHome = function() { $location.path('/'); };
     $scope.details = User.query({userId: $routeParams.userId});
     $scope.events = UserEvents.query({userId: $routeParams.userId});
   });
