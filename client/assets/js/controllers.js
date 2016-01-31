@@ -10,12 +10,15 @@
     if (!api.init()) { $location.path('/login'); } // force log in
     $scope.title = "Get Bizzy";
     $scope.query = { name: '', location: '', datetime: '', };
+    $scope.sub = { group_size: 3, name: '', location: '', datetime: ''}
+    $scope.showSearch = false;
 
     $scope.events = Events.query();
     $scope.filtered = $scope.events;
 
     $scope.makeQuery = function() {
       $scope.filtered = $filter('filter')($scope.events, $scope.searcher);
+      $scope.sub.name = $scope.searcher
     };
 
     $scope.createEvent = function() {
@@ -24,9 +27,11 @@
       // TODO for now, transform whatever into a datetime
       act.datetime = (new Date()).toISOString();
       $scope.query.datetime = act.datetime;
-      Events.save(act); // post to api
-      $scope.events.push(act); // TODO do if successfully saved
+      Events.save($scope.sub); // post to api
+      $scope.events.push($scope.sub); // TODO do if successfully saved
       $scope.makeQuery();
+      $scope.showSearch = false;
+      $scope.searcher = '';
     };
   }
     

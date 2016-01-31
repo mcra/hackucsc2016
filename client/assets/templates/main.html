@@ -1,18 +1,18 @@
 <div ng-controller="EventController" ng-cloak flex layout="column">
   <div class="" >
-      <md-toolbar ng-show="!showSearch" class="md-accent md-hue-3" layout="row">
-        <md-button aria-label="Search" ng-click="showSearch = !showSearch" flex="100">
+        <md-toolbar ng-show="!$scope.showSearch" class="md-accent md-hue-3" layout="row">
+        <md-button aria-label="Search" ng-click="$scope.showSearch = !$scope.showSearch" flex="100">
           Let's do something!
         </md-button>
       </md-toolbar>
-      <md-toolbar class="md-hue-3 md-accent" ng-show="showSearch">
+      <md-toolbar class="md-hue-3 md-accent" ng-show="$scope.showSearch">
         <div class="md-toolbar-tools">
-          <md-button ng-click="showSearch = !showSearch" aria-label="Back">
+          <md-button ng-click="$scope.showSearch = !$scope.showSearch" aria-label="Back">
             <md-icon class="material-icons">arrow_back</md-icon>
           </md-button>
         <md-input-container md-theme="input" flex>
             <label>&nbsp;</label>
-            <input ng-model="searcher" placeholder="Enter Search">
+            <input ng-model="searcher" placeholder="Enter Search" ng-change="makeQuery()">
           </md-input-container>
         </div>
       </md-toolbar>
@@ -25,7 +25,7 @@
         md-row-height-gt-md="1:1" md-row-height="1:1"
         md-gutter="0" md-gutter-gt-sm="0" >
         
-      <md-grid-tile ng-repeat="event in filtered | filter:searcher"
+      <md-grid-tile ng-repeat="event in filtered"
                       md-rowspan="1"
                       md-colspan="1"
                       ng-class=""
@@ -40,27 +40,44 @@
       </md-grid-tile>
 
     </md-grid-list>
-    
+  </md-section>
     <!-- need to design Create Event button -->
-    <div ng-hide="filtered.length">
-      <h2>Nobody is doing that!</h2>
-      <md-button class="md-raised" ng-click="createEvent();">
+  <md-section>
+    <div ng-hide="filtered.length" class="md-padding" layout="column" layout-align="center center">
+      <h2>Awesome, let's schedule this!</h2>
+      <h3>Don't worry, we'll take care of the invites</h3>
+      <md-input-container class="md-block">
+        <input required type="text" ng-model="sub.name" placeholder="What are we doing?"/>
+      </md-input-container>
+
+      <div class="md-block" style="padding-bottom: 20px;">
+        <md-datepicker ng-model="sub.datetime" md-placeholder="When?">
+        </md-datepicker>
+      </div>
+      <md-input-container class="md-block">
+        <label>How many people should we invite?</label>
+        <input required type="number" step="any" name="group_size" ng-model="sub.group_size" min="3" max="50"/>
+      </md-input-container>
+      <md-input-container class="md-block">
+        <input required type="text" ng-model="sub.location" placeholder="Where are we convening?"/>
+      </md-input-container>
+      <md-button class="md-raised md-primary" ng-click="createEvent();">
         Fuck it I'm doing it anyway!
       </md-button>
     </div>
   </md-section>
-    <md-toolbar class="fixed-footer">
-      <div class="md-toolbar-tools" layout="row">
-          <md-button flex="33">
-           Convene
-         </md-button>
-         <md-button flex="33">
-           My Events
-         </md-button>
-         <md-button flex="33">
-           Settings
-         </md-button>
-      </div>
-    </md-toolbar>
+<md-toolbar class="fixed-footer">
+    <div class="md-toolbar-tools" layout="row">
+        <md-button flex="33">
+         Convene
+       </md-button>
+       <md-button flex="33">
+         My Events
+       </md-button>
+       <md-button flex="33">
+         Settings
+       </md-button>
+    </div>
+  </md-toolbar>
   </md-content>
 </div>
