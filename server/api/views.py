@@ -1,4 +1,5 @@
 from django.contrib.auth.models import User
+from django.core.exceptions import ValidationError
 from rest_framework import mixins, permissions, status, viewsets
 from rest_framework.authentication import (
     TokenAuthentication, SessionAuthentication)
@@ -7,7 +8,7 @@ from rest_framework.response import Response
 
 from api.models import Event, Comment
 from api.permissions import OwnerEdit
-from api.serializers import CommentSerializer, EventSerializer, UserSerializer
+from api.serializers import (CommentSerializer, EventSerializer, UserSerializer)
 
 
 class EventViewSet(viewsets.ModelViewSet):
@@ -41,16 +42,16 @@ class EventViewSet(viewsets.ModelViewSet):
                 Comment.objects.filter(event=pk), many=True)
             return Response(comments.data)
         elif request.method == 'POST':
-            # TODO: only comment if a member
-            serializer = CommentSerializer(data=request.data)
-            serializer.initial_data['event'] = pk
-            serializer.initial_data['owner'] = self.request.user.pk
-            if serializer.is_valid():
-                serializer.save()
+            event = Event.objects.get(pk=pk)
+            text = request.data.get('text', '')
+            owner = User.objects.get(pk=self.request.user.pk)
+            comment = Comment(event=event, text=text, owner=owner)
+            try:
+                comment.full_clean()
+                comment.save()
                 return Response({'status': 'OK'})
-            else:
-                return Response(serializer.errors,
-                                status=status.HTTP_400_BAD_REQUEST)
+            except ValidationError as e:
+                return Response(e, status=status.HTTP_400_BAD_REQUEST)
 
     # Get the member list or join or leave an Event
     @detail_route(methods=['GET', 'POST', 'DELETE'])
