@@ -1,18 +1,82 @@
 [
-  { "name": "biking",
-    "location": "here",
-    "date": "today"
+  { "name": "Mountain Biking",
+    "location": "UCSC Trails",
+    "date": "Today",
+   "image":"http://placehold.it/300x300"
   },
-  { "name": "surfing",
-    "location": "there",
-    "date": "tomorrow"
+  { "name": "Surfing",
+    "location": "Steamer Lane",
+    "date": "Tomorrow",
+   "image":"http://placehold.it/300x300"
   },
-  { "name": "dranks",
-    "location": "the old bar",
-    "date": "tomorrow"
+  { "name": "Dranks",
+    "location": "515 Kitchen & Cocktails",
+    "date": "Friday",
+   "image":"http://placehold.it/300x300"
   },
-  { "name": "tai chi",
-    "location": "park",
-    "date": "tomorrow"
+  { "name": "Tai Chi",
+    "location": "Lighthouse Beach",
+    "date": "tomorrow",
+   "image":"http://placehold.it/300x300"
+  },
+  { "name": "Mountain Biking",
+    "location": "UCSC Trails",
+    "date": "Today",
+   "image":"http://placehold.it/300x300"
+  },
+  { "name": "Curfing",
+    "location": "Steamer Lane",
+    "date": "Tomorrow",
+   "image":"http://placehold.it/300x300"
+  },
+  { "name": "Dranks",
+    "location": "515 Kitchen & Cocktails",
+    "date": "Friday",
+   "image":"http://placehold.it/300x300"
+  },
+  { "name": "Tai Chi",
+    "location": "Lighthouse Beach",
+    "date": "tomorrow",
+   "image":"http://placehold.it/300x300"
+  },
+  { "name": "Mountain Biking",
+    "location": "UCSC Trails",
+    "date": "Today",
+   "image":"http://placehold.it/300x300"
+  },
+  { "name": "Surfing",
+    "location": "Steamer Lane",
+    "date": "Tomorrow",
+   "image":"http://placehold.it/300x300"
+  },
+  { "name": "Dranks",
+    "location": "515 Kitchen & Cocktails",
+    "date": "Friday",
+   "image":"http://placehold.it/300x300"
+  },
+  { "name": "Tai Chi",
+    "location": "Lighthouse Beach",
+    "date": "tomorrow",
+   "image":"http://placehold.it/300x300"
+  },
+  { "name": "Mountain Biking",
+    "location": "UCSC Trails",
+    "date": "Today",
+   "image":"http://placehold.it/300x300"
+  },
+  { "name": "Curfing",
+    "location": "Steamer Lane",
+    "date": "Tomorrow",
+   "image":"http://placehold.it/300x300"
+  },
+  { "name": "Dranks",
+    "location": "515 Kitchen & Cocktails",
+    "date": "Friday",
+   "image":"http://placehold.it/300x300"
+  },
+  { "name": "Tai Chi",
+    "location": "Lighthouse Beach",
+    "date": "tomorrow",
+   "image":"http://placehold.it/300x300"
   }
 ]
