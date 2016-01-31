@@ -7,14 +7,9 @@
   mcraServices.factory('Event', ['$resource', EventService]);
 
   function EventService($resource) {
-    return $resource('assets/js/test-events.json', {}, {
-      query: {method:'GET', params:{}, isArray:true}
-    });
-    /*
     return $resource('/api/events/', {}, {
-      query: {method:'GET', params:{}, isArray:true}
+      query: {method:'GET', params:{}, isArray:true},
     });
-    */
   }
 
   mcraServices.factory('authorization', function ($http) {

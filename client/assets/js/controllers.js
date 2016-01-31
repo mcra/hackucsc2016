@@ -9,7 +9,7 @@
   function EventController($scope, Event, $filter, $location, api) {
     if (!api.init()) { $location.path('/login'); } // force log in
     $scope.title = "Get Bizzy";
-    $scope.query = { name: '', location: '', date: '', };
+    $scope.query = { name: '', location: '', datetime: '', };
 
     $scope.events = Event.query();
     $scope.filtered = $scope.events;
@@ -21,7 +21,11 @@
     $scope.createEvent = function() {
       // TODO make sure all fields valid
       var act = angular.copy($scope.query); // copy of $scope.query
-      $scope.events.push(act);
+      // TODO for now, transform whatever into a datetime
+      act.datetime = (new Date()).toISOString();
+      $scope.query.datetime = act.datetime;
+      Event.save(act); // post to api
+      $scope.events.push(act); // TODO do if successfully saved
       $scope.makeQuery();
     };
   }
