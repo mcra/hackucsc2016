@@ -10,7 +10,7 @@
     if (!api.init()) { $location.path('/login'); } // force log in
     $scope.title = "Get Bizzy";
     $scope.query = { name: '', location: '', datetime: '', };
-    $scope.sub = { group_size: 3, name: '', location: '', datetime: ''};
+    $scope.sub = { group_size: 3, name: '', location: '', datetime: new Date()};
     $scope.showSearch = false;
 
     $scope.events = Events.query();
@@ -22,11 +22,6 @@
     };
 
     $scope.createEvent = function() {
-      // TODO make sure all fields valid
-      var act = angular.copy($scope.query); // copy of $scope.query
-      // TODO for now, transform whatever into a datetime
-      act.datetime = (new Date()).toISOString();
-      $scope.query.datetime = act.datetime;
       Events.save($scope.sub)
         .$promise.then(function(e) {
           $location.path('/events/' + e.id);
@@ -60,6 +55,9 @@
     };
     $scope.curUser = 'Erin Springer'; // TODO there is logic for styling around this
     $scope.goHome = function() { $location.path('/'); };
+    $scope.userDetail = function(id) {
+      $location.path('/users/'+id);
+    };
   });
 
   mcraControllers.controller('UserDetailsController', function($scope, User, UserEvents, $http, $routeParams, $location, api) {

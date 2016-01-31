@@ -20,7 +20,7 @@
   <div style="background: hsla(0,0%,0%,.1);">
     <md-subheader class="md-primary">Participants</md-subheader>
       <md-list layout-padding layout-wrap layout layout-align="center center">
-        <md-list-item class="md-3-line" ng-repeat="user in users" layout="column">
+        <md-list-item class="md-3-line" ng-repeat="user in users" layout="column" ng-click="userDetail(user.id)">
           <img ng-src="{{user.prefs.img}}" class="md-avatar" alt="{{user.username}}">
           <p align="center">{{ user.username }}</p>
         </md-list-item>
