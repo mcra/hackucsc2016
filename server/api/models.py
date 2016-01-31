@@ -71,9 +71,11 @@ def create_prefs(sender, instance=None, created=False, **kwargs):
 
 
 # Add a random image to the Event
+# Add the creator to the members list
 @receiver(post_save, sender=Event)
 def add_img(sender, instance=None, created=False, **kwargs):
     if created and instance.img == "":
         kws = ','.join(instance.name.split())
         instance.img = 'http://loremflickr.com/300/300/%s/all' % kws
+        instance.members.add(instance.owner)
         instance.save()
