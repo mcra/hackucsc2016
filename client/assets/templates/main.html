@@ -14,10 +14,7 @@
           <md-icon class="material-icons">list</md-icon>
 </md-tab-label>
         <md-tab-body >
-          <div class="md-padding">
-          View for Item #1 <br/>
-          data.selectedIndex = 0;
-          </div>
+        <div flex ng-include src="'assets/templates/event-list.html'" ng-controller="EventController"></div>
         </md-tab-body>
       </md-tab>
       <md-tab id="tab3">
