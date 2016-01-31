@@ -62,7 +62,7 @@
     </md-list>
     </div>
   </section>
-  <section>
+  <section ng-show="joined">
     <md-subheader class="md-primary" sticky-state="next">Messages</md-subheader>
     <md-list layout-padding>
       <md-list-item class="md-3-line" ng-repeat="message in commentChain">
@@ -83,7 +83,7 @@
       </md-list-item>
     </md-list>
   </section>
-  <section class="dark-background">
+  <section ng-show="joined" class="dark-background">
       <div  layout-align="center center" layout flex="80" flex-offset="10">
       <form ng-submit="postComment()">
       <md-input-container flex="grow">
