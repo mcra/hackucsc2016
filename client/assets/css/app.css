@@ -56,7 +56,7 @@ md-grid-list md-grid-tile md-grid-tile-footer h4, md-grid-list md-grid-tile md-g
 }
 
 .large-headshot {
-  border-radius: 50%;
+  border-radius: 9999px;
 }
 
 .pad-text {
