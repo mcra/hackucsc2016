@@ -1,0 +1,11 @@
+<form class="pure-form" ng-submit="login()" ng-hide="api.init()">
+  <input placeholder="username" name="username" ng-model="username" required/>
+  <input type="password" placeholder="password" name="password" ng-model="password" required/>
+  <button type="submit">Sign In</button>
+</form>
+<div ng-show="api.init()">
+  <button ng-click="logout()">Sign Out</button>
+</div>
+<div ng-show="errors">
+  <p ng-repeat="error in errors">{{error}}</p>
+</div>
