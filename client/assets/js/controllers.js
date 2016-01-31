@@ -49,9 +49,12 @@
     $scope.users = Members.query({id: evtId});
     $scope.commentChain = Comments.query({id: evtId});
     $scope.postComment = function() {
-      Comments.save({id: evtId, text: $scope.message});
+      Comments.save({id: evtId, text: $scope.message})
+        .$promise.then(function(e) {
+          $scope.message = undefined;
+          $scope.commentChain = Comments.query({id: evtId});
+        });
     };
-    // TODO make comment show immediately
     $scope.curUser = 'Erin Springer'; // TODO there is logic for styling around this
     $scope.goHome = function() { $location.path('/'); };
   });
