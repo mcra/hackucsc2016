@@ -1,13 +1,13 @@
 <div ng-controller="EventController" ng-cloak flex layout="column">
   <div class="" >
-        <md-toolbar ng-show="!$scope.showSearch" class="md-accent md-hue-3" layout="row">
-        <md-button aria-label="Search" ng-click="$scope.showSearch = !$scope.showSearch" flex="100">
+        <md-toolbar ng-show="!showSearch" class="md-accent md-hue-3" layout="row">
+        <md-button aria-label="Search" ng-click="showSearch = !showSearch" flex="100">
           Let's do something!
         </md-button>
       </md-toolbar>
-      <md-toolbar class="md-hue-3 md-accent" ng-show="$scope.showSearch">
+      <md-toolbar class="md-hue-3 md-accent" ng-show="showSearch">
         <div class="md-toolbar-tools">
-          <md-button ng-click="$scope.showSearch = !$scope.showSearch" aria-label="Back">
+          <md-button ng-click="clearSearch()" aria-label="Back">
             <md-icon class="material-icons">arrow_back</md-icon>
           </md-button>
         <md-input-container md-theme="input" flex>

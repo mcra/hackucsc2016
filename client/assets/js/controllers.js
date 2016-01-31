@@ -40,6 +40,12 @@
       $scope.searcher = '';
     };
 
+    $scope.clearSearch = function() {
+      $scope.searcher = '';
+      $scope.makeQuery();
+      $scope.showSearch = !$scope.showSearch;
+    };
+
     $scope.getDetail = function(id) {
       $location.path('/events/'+id);
     };
