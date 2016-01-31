@@ -8,10 +8,10 @@
         <md-icon aria-label="keyboard_arrow_left" class="material-icons">keyboard_arrow_left</md-icon>
       </md-button>
       <h2 md-header-title flex>{{event.name}}</h2>
-      <md-button ng-hide="joined" class="md-tools" aria-label="Join" ng-click="join()">
+      <md-button ng-hide="joined" class="md-tools md-raised md-accent" aria-label="Join" ng-click="join()">
         JOIN
       </md-button>
-      <md-button ng-show="joined" class="md-tools" aria-label="Leave" ng-click="leave()">
+      <md-button ng-show="joined" class="md-tools md-raised md-warn" aria-label="Leave" ng-click="leave()">
         LEAVE
       </md-button>
       <md-button class="md-tools" ng-click="flagToast()" aria-label="Edit Contact">
