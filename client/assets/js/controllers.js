@@ -55,7 +55,7 @@
     };
   }
     
-  mcraControllers.controller('EventDetailsController', function($scope, $http, $routeParams, $cookieStore, $location, $mdToast, api, Event, Members, Comments) {
+  mcraControllers.controller('EventDetailsController', function($scope, $http, $window, $routeParams, $cookieStore, $location, $mdToast, api, Event, Members, Comments) {
     if (!api.init()) { $location.path('/login'); } // force log in
     var evtId = $routeParams.eventId;
 
@@ -117,7 +117,7 @@
         });
     };
     $scope.curUser = 'Erin Springer'; // TODO there is logic for styling around this
-    $scope.goHome = function() { $location.path('/'); };
+    $scope.goBack = function() { $window.history.back(); };
     $scope.userDetail = function(id) {
       $location.path('/users/'+id);
     };
@@ -135,9 +135,9 @@
     };
   });
 
-  mcraControllers.controller('UserDetailsController', function($scope, User, UserEvents, $http, $routeParams, $location, $mdToast, api) {
+  mcraControllers.controller('UserDetailsController', function($scope, User, UserEvents, $window, $http, $routeParams, $location, $mdToast, api) {
     if (!api.init()) { $location.path('/login'); } // force log in
-    $scope.goHome = function() { $location.path('/'); };
+    $scope.goBack = function() { $window.history.back(); };
     $scope.getDetail = function(id) {
       $location.path('/events/'+id);
     };
@@ -177,12 +177,12 @@
     $scope.events = UserEvents.query({userId: $routeParams.userId});
   });
 
-  mcraControllers.controller('MyDetailsController', function($scope, MyEvents, $http, $routeParams, $location, api) {
+  mcraControllers.controller('MyDetailsController', function($scope, MyEvents, $http, $window, $routeParams, $location, api) {
     if (!api.init()) { $location.path('/login'); } // force log in
     $scope.getDetail = function(id) {
       $location.path('/events/'+id);
     };
-    $scope.goHome = function() { $location.path('/'); };
+    $scope.goBack = function() { $window.history.back(); };
 
     MyEvents.query(function(res) {
       $scope.details = res.user;
