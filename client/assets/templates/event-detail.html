@@ -6,6 +6,12 @@
         <md-icon aria-label="keyboard_arrow_left" class="material-icons">keyboard_arrow_left</md-icon>
       </md-button>
       <h2 md-header-title flex>{{event.name}}</h2>
+      <md-button ng-hide="joined" class="md-tools" aria-label="Join" ng-click="join()">
+        JOIN
+      </md-button>
+      <md-button ng-show="joined" class="md-tools" aria-label="Leave" ng-click="leave()">
+        LEAVE
+      </md-button>
       <md-button class="md-tools" aria-label="Edit Contact">
         <md-icon aria-label="assistant Photo" class="material-icons">&#xE3A0;</md-icon>
       </md-button>
