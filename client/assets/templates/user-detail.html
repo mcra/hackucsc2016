@@ -34,13 +34,14 @@
                       md-rowspan="1"
                       md-colspan="1"
                       ng-class=""
+                      ng-click="getDetail(event.id)"
                       class="event-tile">
 
         <img ng-src="{{event.img}}" alt="" class="bg-image">          
         <md-grid-tile-footer>
          <h3><a href="#/events/{{event.id}}">{{event.name}}</a></h3>
          <h4>{{event.location}}</h4>
-         <h4>{{event.datetime}}</h4>
+         <h4>{{event.datetime | date:"EEEE 'at' ha"}}</h4>
         </md-grid-tile-footer>
       </md-grid-tile>
 
