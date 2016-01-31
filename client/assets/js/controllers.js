@@ -43,7 +43,6 @@
     };
   }
     
-
   mcraControllers.controller('EventDetailsController', function($scope, $http, $routeParams, $location, api, Event, Members, Comments) {
     if (!api.init()) { $location.path('/login'); } // force log in
 
@@ -64,13 +63,14 @@
     $scope.details = User.query({userId: $routeParams.userId});
     $scope.events = UserEvents.query({userId: $routeParams.userId});
   });
-  /*
-  mcraControllers.controller('UserDetailsController', function($scope, User, UserEvents, $http, $routeParams, $location, api) {
+
+  mcraControllers.controller('MyDetailsController', function($scope, MyEvents, $http, $routeParams, $location, api) {
     if (!api.init()) { $location.path('/login'); } // force log in
-    $scope.details = User.query({userId: $routeParams.userId});
-    $scope.events = UserEvents.query({userId: $routeParams.userId});
+    MyEvents.query(function(res) {
+      $scope.details = res.user;
+      $scope.events = res.events;
+    });
   });
-  */
 
   mcraControllers.controller('AuthController', function($scope, $location, $cookieStore, authorization, api) {
     $scope.title = 'Login'; // TODO
