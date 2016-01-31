@@ -1,70 +1,5 @@
-<!-- <h1>{{title}}</h1>-->
- 
-<div layout="column">
- 
-  <md-toolbar flex md-scroll-shrink ng-if="true" class="fixed-footer" ng-controller="FilterMenuCtrl as ctrl">
-    <div class="md-toolbar-tools" layout="row">
-        <md-menu>
-          <md-button flex="25" aria-label="what" ng-click="ctrl.openMenu($mdOpenMenu, $event)" >
-            What?
-          </md-button>
-          <md-menu-content>
-            <md-menu-item>
-              <md-input-container>
-                <label>What do you want to do?</label>
-                <input ng-change="makeQuery()" ng-model="query.name">
-              </md-input-container>
-            </md-menu-item>
-          </md-menu-content>
-        </md-menu>
-        <md-menu>
-        <md-button flex="25" aria-label="what" ng-click="ctrl.openMenu($mdOpenMenu, $event)" >
-            Where?
-          </md-button>
-          <md-menu-content>
-            <md-menu-item>
-              <md-input-container>
-                <label>What do you want to do?</label>
-                <input ng-change="makeQuery()" ng-model="query.location">
-              </md-input-container>
-            </md-menu-item>
-          </md-menu-content>
-        </md-menu>
-        <md-menu>
-        <md-button flex="25" aria-label="what" ng-click="ctrl.openMenu($mdOpenMenu, $event)" >
-            When?
-          </md-button>
-          <md-menu-content>
-            <md-menu-item>
-              <md-input-container>
-                <label>What do you want to do?</label>
-                <input ng-change="makeQuery()" ng-model="query.date">
-              </md-input-container>
-            </md-menu-item>
-          </md-menu-content>
-        </md-menu>
-        <md-button flex="25">
-         Who?
-       </md-button>
-
-        <!--<md-button flex="25" aria-label="what" ng-click="ctrl.openMenu($mdOpenMenu, $event)" >
-            Who?
-          </md-button>
-          <md-menu-content>
-            <md-menu-item>
-              <md-input-container>
-                <label>What do you want to do?</label>
-                <input ng-change="makeQuery()" ng-model="query.name">
-              </md-input-container>
-            </md-menu-item>
-          </md-menu-content>
-          </md-menu>-->
-
-    </div>
-  </md-toolbar>
-  
-  <md-content flex class="md-padding" style="padding-bottom: 150px">
-    <md-grid-list
+  <md-section>
+      <md-grid-list
         md-cols="1" md-cols-sm="2" md-cols-md="4" md-cols-gt-md="6"
         md-row-height-gt-md="1:1" md-row-height="1:1"
         md-gutter="5px" md-gutter-gt-sm="5px" >
@@ -93,25 +28,4 @@
         Fuck it I'm doing it anyway!
       </md-button>
     </div>
-  </md-content> 
- 
-  
-  
-</div>
-
-  
-  <!--
-  <md-toolbar md-scroll-shrink ng-cloak>
-    <p>
-        Name: <input ng-change="makeQuery()" ng-model="query.name">
-      </p>
-      <p>
-        Date/Time: <input ng-change="makeQuery()" ng-model="query.date">
-      </p>
-      <p>
-        Location: <input ng-change="makeQuery()" ng-model="query.location">
-      </p>
-  </md-toolbar> -->
-
-  
-
+  </md-section>
