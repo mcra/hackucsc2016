@@ -1,4 +1,7 @@
-from rest_framework import permissions, status, viewsets
+from django.contrib.auth.models import User
+from rest_framework import mixins, permissions, status, viewsets
+from rest_framework.authentication import (
+    TokenAuthentication, SessionAuthentication)
 from rest_framework.decorators import detail_route, list_route
 from rest_framework.response import Response
 
@@ -15,6 +18,7 @@ class EventViewSet(viewsets.ModelViewSet):
     # TODO: should delete be available?
     serializer_class = EventSerializer
     permission_classes = (permissions.IsAuthenticated, OwnerEdit)
+    authentication_classes = (TokenAuthentication, SessionAuthentication)
 
     def get_queryset(self):
         return Event.objects.all()
@@ -35,8 +39,7 @@ class EventViewSet(viewsets.ModelViewSet):
         if request.method == 'GET':
             comments = CommentSerializer(
                 Comment.objects.filter(event=pk), many=True)
-            resp = {'comments': comments.data}
-            return Response(resp)
+            return Response(comments.data)
         elif request.method == 'POST':
             # TODO: only comment if a member
             serializer = CommentSerializer(data=request.data)
@@ -58,8 +61,7 @@ class EventViewSet(viewsets.ModelViewSet):
             # TODO: check for valid event
             event = Event.objects.get(pk=pk)
             members = UserSerializer(event.members.all(), many=True)
-            resp = {'members': members.data}
-            return Response(resp)
+            return Response(members.data)
         elif request.method == 'POST':
             # Join the event.
             event = Event.objects.get(pk=pk)
@@ -77,3 +79,26 @@ class EventViewSet(viewsets.ModelViewSet):
             event = Event.objects.get(pk=pk)
             event.members.remove(request.user)
             return Response({'status': 'OK'})
+
+
+class UserViewSet(mixins.RetrieveModelMixin,
+                  viewsets.GenericViewSet):
+    serializer_class = UserSerializer
+    permission_classes = (permissions.IsAuthenticated,)
+    authentication_classes = (TokenAuthentication, SessionAuthentication)
+
+    def get_queryset(self):
+        return User.objects.all()
+
+    @detail_route(methods=['GET'])
+    def events(self, request, pk=None):
+        events = Event.objects.filter(owner=pk)
+        events = EventSerializer(events, many=True)
+        return Response(events.data)
+
+    @list_route(methods=['GET'])
+    def me(self, request, pk=None):
+        user = UserSerializer(self.request.user)
+        events = Event.objects.filter(owner=pk)
+        events = EventSerializer(events, many=True)
+        return Response({'user': user.data, 'events': events.data})

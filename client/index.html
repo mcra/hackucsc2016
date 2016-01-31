@@ -21,6 +21,7 @@
   <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-messages.min.js"></script>
   <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.min.js"></script>
   <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-resource.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-cookies.min.js"></script>
 
   <!-- Angular Material Library -->
   <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.js"></script>
@@ -30,10 +31,11 @@
   <!-- Your application bootstrap  -->
   <script type="text/javascript">    
     angular.module('HackUCSC2016', ['ngMaterial', 'ngRoute', 'mcraControllers', 'mcraServices'])
-    .config(function($mdThemingProvider, $mdIconProvider, $routeProvider){
+    .config(function($mdThemingProvider, $mdIconProvider, $routeProvider, $httpProvider){
       $mdThemingProvider.theme('default')
         .primaryPalette('brown')
         .accentPalette('indigo');
+      // $httpProvider.interceptors.push('httpInterceptor'); // TODO
       $routeProvider.
       when('/', {
         templateUrl: 'assets/templates/event-list.html',
@@ -47,16 +49,16 @@
         templateUrl: 'assets/templates/main.html',
         controller: 'MainController'
       }).
-
-      /*
-      when('/events/:eventId', {
-        templateUrl: 'partials/phone-detail.html',
-        controller: 'PhoneDetailCtrl'
+      when('/login', {
+        templateUrl: 'assets/templates/login.html',
+        controller: 'AuthController'
       }).
-      */
       otherwise({
         redirectTo: '/'
       });
+    })
+    .run(function(api) {
+      api.init();
     });
   </script>
 
