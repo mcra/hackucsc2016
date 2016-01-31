@@ -42,6 +42,12 @@
     $scope.curUser = 'Erin Springer';
   });
 
+  mcraControllers.controller('UserDetailsController', function($scope, User, UserEvents, $http, $routeParams, $location, api) {
+    if (!api.init()) { $location.path('/login'); } // force log in
+    $scope.details = User.query({userId: $routeParams.userId});
+    $scope.events = UserEvents.query({userId: $routeParams.userId});
+  });
+
   mcraControllers.controller('AuthController', function($scope, $location, $cookieStore, authorization, api) {
     $scope.title = 'Login'; // TODO
     $scope.api = api;

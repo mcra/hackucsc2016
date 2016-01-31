@@ -45,6 +45,10 @@
         templateUrl: 'assets/templates/event-detail.html',
         controller: 'EventDetailsController'
       }).
+      when('/users/:userId', {
+        templateUrl: 'assets/templates/user-detail.html',
+        controller: 'UserDetailsController'
+      }).
       when('/login', {
         templateUrl: 'assets/templates/login.html',
         controller: 'AuthController'
