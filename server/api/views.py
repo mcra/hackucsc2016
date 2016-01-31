@@ -1,5 +1,6 @@
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
+from django.db.models import Q
 from rest_framework import mixins, permissions, status, viewsets
 from rest_framework.authentication import (
     TokenAuthentication, SessionAuthentication)
@@ -8,7 +9,7 @@ from rest_framework.response import Response
 
 from api.models import Event, Comment
 from api.permissions import OwnerEdit
-from api.serializers import (CommentSerializer, EventSerializer, UserSerializer)
+from api.serializers import CommentSerializer, EventSerializer, UserSerializer
 
 
 class EventViewSet(viewsets.ModelViewSet):
@@ -91,15 +92,22 @@ class UserViewSet(mixins.RetrieveModelMixin,
     def get_queryset(self):
         return User.objects.all()
 
+    # TODO: the joined and owned event lists could be separate
     @detail_route(methods=['GET'])
     def events(self, request, pk=None):
-        events = Event.objects.filter(owner=pk)
+        owned = Q(owner=pk)
+        joined = Q(members=request.user)
+        q = Q(owned | joined)
+        events = Event.objects.filter(q)
         events = EventSerializer(events, many=True)
         return Response(events.data)
 
     @list_route(methods=['GET'])
     def me(self, request, pk=None):
         user = UserSerializer(self.request.user)
-        events = Event.objects.filter(owner=self.request.user.pk)
+        owned = Q(owner=self.request.user.pk)
+        joined = Q(members=self.request.user.pk)
+        q = Q(owned | joined)
+        events = Event.objects.filter(q)
         events = EventSerializer(events, many=True)
         return Response({'user': user.data, 'events': events.data})
