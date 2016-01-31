@@ -22,7 +22,7 @@ class Event(models.Model):
     members = models.ManyToManyField('auth.User', related_name='joined_events')
     group_size = models.IntegerField(default=6)
     # min group size
-    # image
+    img = models.URLField(blank=True)
     # anonymous / active
 
     class Meta:
@@ -68,3 +68,12 @@ def create_prefs(sender, instance=None, created=False, **kwargs):
         req = requests.get('https://randomuser.me/api/')
         img = req.json()['results'][0]['user']['picture']['medium']
         Prefs.objects.create(owner=instance, img=img)
+
+
+# Add a random image to the Event
+@receiver(post_save, sender=Event)
+def add_img(sender, instance=None, created=False, **kwargs):
+    if created and instance.img == "":
+        kws = ','.join(instance.name.split())
+        instance.img = 'http://loremflickr.com/300/300/%s/all' % kws
+        instance.save()
