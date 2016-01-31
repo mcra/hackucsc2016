@@ -10,7 +10,7 @@
     if (!api.init()) { $location.path('/login'); } // force log in
     $scope.title = "Get Bizzy";
     $scope.query = { name: '', location: '', datetime: '', };
-    $scope.sub = { group_size: 3, name: '', location: '', datetime: ''}
+    $scope.sub = { group_size: 3, name: '', location: '', datetime: ''};
     $scope.showSearch = false;
 
     $scope.events = Events.query();
@@ -18,8 +18,7 @@
 
     $scope.makeQuery = function() {
       $scope.filtered = $filter('filter')($scope.events, $scope.searcher);
-      console.log($scope.filtered[0]);
-      $scope.sub.name = $scope.searcher
+      $scope.sub.name = $scope.searcher;
     };
 
     $scope.createEvent = function() {
@@ -34,6 +33,10 @@
       $scope.showSearch = false;
       $scope.searcher = '';
     };
+
+    $scope.getDetail = function(id) {
+      $location.path('/events/'+id);
+    };
   }
     
 
@@ -47,6 +50,7 @@
     $scope.postComment = function() {
       Comments.save({id: evtId, text: $scope.message});
     };
+    // TODO make comment show immediately
     $scope.curUser = 'Erin Springer'; // TODO there is logic for styling around this
     $scope.goHome = function() { $location.path('/'); };
   });
