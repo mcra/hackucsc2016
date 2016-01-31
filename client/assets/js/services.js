@@ -72,6 +72,13 @@
     });
   }
 
+  mcraServices.factory('MyEvents', ['$resource', MyEventsService]);
+  function MyEventsService($resource) {
+    return $resource('/api/users/me/', {}, {
+      query: {method:'GET', params:{}, isArray:false},
+    });
+  }
+
   /*
   mcraServices.factory('httpInterceptor', function httpInterceptor ($q, $window, $location) {
     console.log('intercept'); // TODO

@@ -54,6 +54,10 @@
         templateUrl: 'assets/templates/login.html',
         controller: 'AuthController'
       }).
+      when('/mine', {
+        templateUrl: 'assets/templates/user-detail.html',
+        controller: 'MyDetailsController'
+      }).
       otherwise({
         redirectTo: '/'
       });
