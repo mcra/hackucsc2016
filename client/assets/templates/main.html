@@ -1,23 +1,20 @@
-<div ng-controller="EventController" ng-cloak flex layout="column">
-  <div class="" >
-        <md-toolbar ng-show="!showSearch" class="md-accent md-hue-3" layout="row">
-        <md-button aria-label="Search" ng-click="showSearch = !showSearch" flex="100">
-          Let's do something!
-        </md-button>
-      </md-toolbar>
-      <md-toolbar class="md-hue-3 md-accent" ng-show="showSearch">
-        <div class="md-toolbar-tools">
-          <md-button ng-click="clearSearch()" aria-label="Back">
-            <md-icon class="material-icons">arrow_back</md-icon>
-          </md-button>
-        <md-input-container md-theme="input" flex>
-            <label>&nbsp;</label>
-            <input ng-model="searcher" placeholder="Enter Search" ng-change="makeQuery()">
-          </md-input-container>
-        </div>
-      </md-toolbar>
-  </div>
+<div ng-controller="EventController" ng-cloak class="relative" layout="column" role="main">
+  <md-toolbar>
+    <div class="md-toolbar-tools" layout="row">
+      <div flex="4">
+        <md-icon aria-label="search" class="material-icons">search</md-icon>
+      </div>
+      <md-input-container md-theme="input" style="padding-top: 1.5em;" flex>
+        <label>&nbsp;</label>
+        <input ng-model="searcher" placeholder="Let's do something!" flex="62" ng-change="makeQuery()">
+      </md-input-container>
+      <md-button ng-click="myEvents()" flex="33">
+        My Events
+      </md-button>
 
+    </div>
+   
+  </md-toolbar>
   <md-content style="padding-bottom: 56px;">
     <md-section>
       <md-grid-list
@@ -45,7 +42,7 @@
   <md-section>
     <div ng-hide="filtered.length > 0 || waiting" class="md-padding" layout="column" layout-align="center center">
       <h2>Awesome, let's schedule this!</h2>
-      <h3>Don't worry, we'll take care of the invites</h3>
+      <h3>Don't worry, we'll take care of the invites.</h3>
       <md-input-container class="md-block">
         <input required type="text" ng-model="sub.name" placeholder="What are we doing?"/>
       </md-input-container>
@@ -62,22 +59,9 @@
         <input required type="text" ng-model="sub.location" placeholder="Where are we convening?"/>
       </md-input-container>
       <md-button class="md-raised md-primary" ng-click="createEvent();">
-        Fuck it I'm doing it anyway!
+        Make it happen!
       </md-button>
     </div>
   </md-section>
-<md-toolbar class="fixed-footer">
-    <div class="md-toolbar-tools" layout="row">
-        <md-button flex="33">
-         Convene
-       </md-button>
-       <md-button ng-click="myEvents()" flex="33">
-         My Events
-       </md-button>
-       <md-button flex="33">
-         Settings
-       </md-button>
-    </div>
-  </md-toolbar>
   </md-content>
 </div>

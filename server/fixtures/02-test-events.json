@@ -1,0 +1,158 @@
+[
+{
+ "model": "api.event",
+ "pk": 1,
+ "fields": {
+  "name": "Surfing",
+  "datetime": "2016-01-30T22:42:17Z",
+  "location": "Cowells",
+  "owner": 8,
+  "group_size": 6,
+  "img": "http://images.askmen.com/top_10/celebrity/top-10-female-surfers_2.jpg",
+  "members": [
+   8
+  ]
+ }
+},
+{
+ "model": "api.event",
+ "pk": 2,
+ "fields": {
+  "name": "Mountain Biking",
+  "datetime": "2016-01-30T22:42:50Z",
+  "location": "Santa Cruz",
+  "owner": 3,
+  "group_size": 6,
+  "img": "https://40.media.tumblr.com/050e8362e1608003e6d24e3dff500f19/tumblr_n1tz4aJvKB1ttqqcoo1_400.jpg",
+  "members": [
+   3,
+   4,
+   6
+  ]
+ }
+},
+{
+ "model": "api.event",
+ "pk": 3,
+ "fields": {
+  "name": "Tai Chi",
+  "datetime": "2016-01-30T22:44:39Z",
+  "location": "Grant Park",
+  "owner": 5,
+  "group_size": 6,
+  "img": "http://www.energyarts.com/sites/default/files/imagecache/300_wide/images/blog/Tai-Chi-Fa-Jin-Photo-by-Mark-Thayer.jpg",
+  "members": [
+   5
+  ]
+ }
+},
+{
+ "model": "api.event",
+ "pk": 4,
+ "fields": {
+  "name": "Drinks",
+  "datetime": "2016-01-30T22:45:51Z",
+  "location": "515 Kitchen & Cocktails",
+  "owner": 7,
+  "group_size": 6,
+  "img": "http://blogs.lawyers.com/wp-content/uploads/2013/10/beer-on-bar-300.jpg",
+  "members": [
+   7
+  ]
+ }
+},
+{
+ "model": "api.event",
+ "pk": 5,
+ "fields": {
+  "name": "Chase Raccoons",
+  "datetime": "2016-02-05T06:00:00Z",
+  "location": "Science Hill",
+  "owner": 4,
+  "group_size": 3,
+  "img": "http://www.brendans-island.com/blogsource/raccoon-in-water.png",
+  "members": [
+   5,
+   6
+  ]
+ }
+},
+{
+ "model": "api.event",
+ "pk": 6,
+ "fields": {
+  "name": "Hike",
+  "datetime": "2016-02-12T15:00:00Z",
+  "location": "Henry Cowell",
+  "owner": 7,
+  "group_size": 8,
+  "img": "http://redwoods.info/photos%5C3411PRevelation%20trail%20from%20Redwood%20Parks%20Assoc.jpg",
+  "members": [
+   5,
+   8
+  ]
+ }
+},
+{
+ "model": "api.event",
+ "pk": 7,
+ "fields": {
+  "name": "Ski",
+  "datetime": "2016-02-02T18:49:17Z",
+  "location": "Lake Tahoe",
+  "owner": 4,
+  "group_size": 5,
+  "img": "http://summitcanyon.com/wp-content/uploads/2013/05/featured-steep-skiing-hilaree.gif",
+  "members": [
+   6
+  ]
+ }
+},
+{
+ "model": "api.event",
+ "pk": 8,
+ "fields": {
+  "name": "Super Smash",
+  "datetime": "2016-02-05T20:00:00Z",
+  "location": "Hyrule",
+  "owner": 8,
+  "group_size": 4,
+  "img": "http://www.therem.org/wp-content/uploads/2014/10/ness-300x300.png",
+  "members": [
+   6
+  ]
+ }
+},
+{
+ "model": "api.event",
+ "pk": 9,
+ "fields": {
+  "name": "Play Settlers",
+  "datetime": "2016-02-06T18:00:00Z",
+  "location": "Woodstocks",
+  "owner": 7,
+  "group_size": 5,
+  "img": "https://www.thebrooklynstrategist.com/img/games/full/_small/settlers_of_catan.jpg",
+  "members": [
+   6,
+   7
+  ]
+ }
+},
+{
+ "model": "api.event",
+ "pk": 10,
+ "fields": {
+  "name": "HackUCSC",
+  "datetime": "2016-01-31T18:55:26Z",
+  "location": "9/10 MPR",
+  "owner": 4,
+  "group_size": 5,
+  "img": "http://static1.squarespace.com/static/5588564ae4b08fd2d8e631f1/566b0c51b0a27dcf13dbc08c/566b0c52b0a27dcf13dbc095/1449856672878/F2012-Hackathon-8.jpg?format=300w",
+  "members": [
+   3,
+   6
+  ]
+ }
+}
+]

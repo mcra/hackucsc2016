@@ -12,6 +12,19 @@ body {
     background-position:50% 50%;
 }
 
+.md-toolbar-tools-bottom {
+  font-size: small;
+  & :last-child {
+    opacity: 0.8;
+  }
+}
+
+md-toolbar {
+  .md-button.md-default-theme {
+    border-radius: 9999px; // round toolbar buttons
+  }
+}
+
 [scroll] {
   position:fixed;
   top:0;
@@ -89,4 +102,9 @@ md-input-container.md-default-theme label, md-input-container label, md-input-co
   display:block;
   margin-top: 0;
   margin-bottom:.5rem;
+}
+
+md-input-container.md-default-theme .md-input, md-input-container .md-input {
+  text-shadow: none ;
+  color: #000;
 }

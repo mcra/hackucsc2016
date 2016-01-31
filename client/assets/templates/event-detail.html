@@ -4,7 +4,7 @@
   </div>
   <md-toolbar scroll>
     <div class="md-toolbar-tools">
-      <md-button class="md-tools" aria-label="Go Back" ng-click="goHome()">
+      <md-button class="md-tools" aria-label="Go Back" ng-click="goBack()">
         <md-icon aria-label="keyboard_arrow_left" class="material-icons">keyboard_arrow_left</md-icon>
       </md-button>
       <h2 md-header-title flex>{{event.name}}</h2>
@@ -51,7 +51,11 @@
   <div class="dark-background" >
     <md-subheader class="md-primary">Participants</md-subheader>
     <md-list layout-padding layout-wrap layout layout-align="center center" class="avatar-list">
-      <md-list-item class="md-3-line" ng-repeat="user in users" layout="column" ng-click="userDetail(user.id)">
+
+      <md-list-item ng-hide="user.username" class="md-3-line" ng-repeat="user in users" layout="column" ng-click="null">
+        <md-icon style="font-size: 46px; margin-top: 2px" class="material-icons">account_circle</md-icon>
+      </md-list-item>
+      <md-list-item ng-show="user.username" class="md-3-line" ng-repeat="user in users" layout="column" ng-click="userDetail(user.id)">
         <img ng-src="{{user.prefs.img}}" class="md-avatar" alt="{{user.username}}">
         <p class="avatar-text">{{ user.username }}</p>
       </md-list-item>
@@ -79,12 +83,14 @@
   </section>
   <section class="dark-background">
       <div  layout-align="center center" layout flex="70" flex-offset="15">
+      <form ng-submit="postComment()">
       <md-input-container flex="grow">
         <input type="text" ng-model="message" placeholder="Say something!">
       </md-input-container>
       <md-button class="md-icon-button" aria-label="Send" ng-click="postComment()">
         <md-icon class="material-icons">send</md-icon>
       </md-button>
+      </form>
       </div>
   </section>
 </md-content>

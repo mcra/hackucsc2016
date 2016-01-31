@@ -55,7 +55,7 @@
     };
   }
     
-  mcraControllers.controller('EventDetailsController', function($scope, $http, $routeParams, $cookieStore, $location, $mdToast, api, Event, Members, Comments) {
+  mcraControllers.controller('EventDetailsController', function($scope, $http, $window, $routeParams, $cookieStore, $location, $mdToast, api, Event, Members, Comments) {
     if (!api.init()) { $location.path('/login'); } // force log in
     var evtId = $routeParams.eventId;
 
@@ -90,7 +90,7 @@
     };
 
     $scope.event = Event.query({id: evtId});
-    $scope.users = Members.query({id: evtId}, function(res) {
+    var processMembers = function(res) {
       $scope.joined = false;
       var cur = $cookieStore.get('username');
       for (var i=0; i<res.length; i++) {
@@ -102,10 +102,13 @@
       // TODO: should be done on API side for actual anonymity
       if (res.length < 3) {
         for (var j=0; j<res.length; j++) {
-          res[j].username = "";
+          if (cur !== res[j].username) {
+            res[j].username = "";
+          }
         }
       }
-    });
+    };
+    $scope.users = Members.query({id: evtId}, processMembers);
 
     $scope.commentChain = Comments.query({id: evtId});
     $scope.postComment = function() {
@@ -116,8 +119,8 @@
           $scope.commentChain = Comments.query({id: evtId});
         });
     };
-    $scope.curUser = 'Erin Springer'; // TODO there is logic for styling around this
-    $scope.goHome = function() { $location.path('/'); };
+    $scope.curUser = $cookieStore.get('username');
+    $scope.goBack = function() { $window.history.back(); };
     $scope.userDetail = function(id) {
       $location.path('/users/'+id);
     };
@@ -125,7 +128,7 @@
       Event.join({id: evtId})
         .$promise.then(function(e) {
           // TODO: api to return new members list on join
-          $scope.users = Members.query({id: evtId});
+          $scope.users = Members.query({id: evtId}, processMembers);
           $scope.joined = true;
         });
     };
@@ -135,9 +138,9 @@
     };
   });
 
-  mcraControllers.controller('UserDetailsController', function($scope, User, UserEvents, $http, $routeParams, $location, $mdToast, api) {
+  mcraControllers.controller('UserDetailsController', function($scope, User, UserEvents, $window, $http, $routeParams, $location, $cookieStore, $mdToast, api) {
     if (!api.init()) { $location.path('/login'); } // force log in
-    $scope.goHome = function() { $location.path('/'); };
+    $scope.goBack = function() { $window.history.back(); };
     $scope.getDetail = function(id) {
       $location.path('/events/'+id);
     };
@@ -172,23 +175,25 @@
           );
     };
 
-
-    $scope.details = User.query({userId: $routeParams.userId});
+    $scope.details = User.query({userId: $routeParams.userId}, function(res) {
+      $scope.isMe = (res.username == $cookieStore.get('username'));
+    });
     $scope.events = UserEvents.query({userId: $routeParams.userId});
   });
 
-  mcraControllers.controller('MyDetailsController', function($scope, MyEvents, $http, $routeParams, $location, api) {
+  mcraControllers.controller('MyDetailsController', function($scope, MyEvents, $http, $window, $routeParams, $location, api) {
     if (!api.init()) { $location.path('/login'); } // force log in
     $scope.getDetail = function(id) {
       $location.path('/events/'+id);
     };
-    $scope.goHome = function() { $location.path('/'); };
+    $scope.goBack = function() { $window.history.back(); };
 
     MyEvents.query(function(res) {
       $scope.details = res.user;
       $scope.events = res.events;
-
     });
+
+    $scope.isMe = true;
   });
 
   mcraControllers.controller('AuthController', function($scope, $location, $cookieStore, authorization, api) {
