@@ -90,7 +90,7 @@
     };
 
     $scope.event = Event.query({id: evtId});
-    $scope.users = Members.query({id: evtId}, function(res) {
+    var processMembers = function(res) {
       $scope.joined = false;
       var cur = $cookieStore.get('username');
       for (var i=0; i<res.length; i++) {
@@ -102,10 +102,13 @@
       // TODO: should be done on API side for actual anonymity
       if (res.length < 3) {
         for (var j=0; j<res.length; j++) {
-          res[j].username = "";
+          if (cur !== res[j].username) {
+            res[j].username = "";
+          }
         }
       }
-    });
+    };
+    $scope.users = Members.query({id: evtId}, processMembers);
 
     $scope.commentChain = Comments.query({id: evtId});
     $scope.postComment = function() {
@@ -125,7 +128,7 @@
       Event.join({id: evtId})
         .$promise.then(function(e) {
           // TODO: api to return new members list on join
-          $scope.users = Members.query({id: evtId});
+          $scope.users = Members.query({id: evtId}, processMembers);
           $scope.joined = true;
         });
     };
