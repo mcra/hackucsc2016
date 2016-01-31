@@ -42,7 +42,8 @@
   <md-section>
     <div ng-hide="filtered.length > 0 || waiting" class="md-padding" layout="column" layout-align="center center">
       <h3>No matching events, start one!</h3>
-      <md-input-container class="md-block">
+      <form name='newEvent'>
+        <md-input-container class="md-block">
         <input required type="text" ng-model="sub.name" placeholder="What are we doing?"/>
       </md-input-container>
 
@@ -57,9 +58,10 @@
       <md-input-container class="md-block">
         <input required type="text" ng-model="sub.location" placeholder="Where are we convening?"/>
       </md-input-container>
-      <md-button class="md-raised md-primary" ng-click="createEvent();">
-        Make it happen!
+      <md-button class="md-raised md-primary" ng-disabled="newEvent.$invalid" ng-click="newEvent.$valid && createEvent();">
+        <span style="padding-left: 10px; padding-right: 10px;">Make it happen!</span>
       </md-button>
+      </form>
     </div>
   </md-section>
   </md-content>
