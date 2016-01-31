@@ -57,6 +57,9 @@
     };
     $scope.curUser = 'Erin Springer'; // TODO there is logic for styling around this
     $scope.goHome = function() { $location.path('/'); };
+    $scope.userDetail = function(id) {
+      $location.path('/users/'+id);
+    };
   });
 
   mcraControllers.controller('UserDetailsController', function($scope, User, UserEvents, $http, $routeParams, $location, api) {
