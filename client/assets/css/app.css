@@ -1,4 +1,7 @@
 /* CSS */
+body {
+  background-color: rgb(66,66,66);
+}
 [md-header-picture] {
     position: absolute;
     width:100%;
@@ -20,7 +23,7 @@
 }
 
 md-grid-list {
-  margin:5px;
+  margin:0;
 }
 md-grid-list md-grid-tile.event-tile {
   overflow: hidden;
@@ -34,9 +37,17 @@ md-grid-list md-grid-tile.event-tile md-grid-tile-footer, md-grid-list md-grid-t
   height: initial;
   max-height: 50%;
   padding: 5px;
+  background: rgba(0,0,0,.33);
 }
 md-grid-list md-grid-tile md-grid-tile-footer h3, md-grid-list md-grid-tile md-grid-tile-footer h4, md-grid-list md-grid-tile md-grid-tile-header h3, md-grid-list md-grid-tile md-grid-tile-header h4 {
   margin:0;
+}
+md-grid-list md-grid-tile md-grid-tile-footer h3, md-grid-list md-grid-tile md-grid-tile-header h3 {
+  font-size: 16px;
+  font-weight: 600;
+}
+md-grid-list md-grid-tile md-grid-tile-footer h4, md-grid-list md-grid-tile md-grid-tile-header h4 {
+  font-size: 14px;
 }
 #login-form md-input-container {
   margin:0;

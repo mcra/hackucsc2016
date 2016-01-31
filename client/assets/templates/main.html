@@ -1,5 +1,5 @@
 <div ng-controller="EventController" ng-cloak flex layout="column">
-  <div class="md-padding">
+  <div class="" >
       <md-toolbar ng-show="!showSearch" class="md-accent md-hue-3" layout="row">
         <md-button aria-label="Search" ng-click="showSearch = !showSearch" flex="100">
           Let's do something!
@@ -21,9 +21,9 @@
   <md-content style="padding-bottom: 100px;">
     <md-section>
       <md-grid-list
-        md-cols="1" md-cols-sm="2" md-cols-md="4" md-cols-gt-md="6"
+        md-cols="2" md-cols-sm="3" md-cols-md="4" md-cols-gt-md="6"
         md-row-height-gt-md="1:1" md-row-height="1:1"
-        md-gutter="5px" md-gutter-gt-sm="5px" >
+        md-gutter="0" md-gutter-gt-sm="0" >
         
       <md-grid-tile ng-repeat="event in filtered | filter:searcher"
                       md-rowspan="1"
