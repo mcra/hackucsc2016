@@ -15,7 +15,7 @@
     $scope.filtered = $scope.events;
 
     $scope.makeQuery = function() {
-      $scope.filtered = $filter('filter')($scope.events, $scope.query);
+      $scope.filtered = $filter('filter')($scope.events, $scope.searcher);
     };
 
     $scope.createEvent = function() {
@@ -29,38 +29,7 @@
       $scope.makeQuery();
     };
   }
-
-    mcraControllers.controller('FilterMenuCtrl', function FilterMenuCtrl($mdDialog) {
-      var originatorEv;
-      this.openMenu = function($mdOpenMenu, ev) {
-        originatorEv = ev;
-        $mdOpenMenu(ev);
-      };
-      this.notificationsEnabled = true;
-      this.toggleNotifications = function() {
-        this.notificationsEnabled = !this.notificationsEnabled;
-      };
-      this.redial = function() {
-        $mdDialog.show(
-          $mdDialog.alert()
-            .targetEvent(originatorEv)
-            .clickOutsideToClose(true)
-            .parent('body')
-            .title('Suddenly, a redial')
-            .textContent('You just called a friend; who told you the most amazing story. Have a cookie!')
-            .ok('That was easy')
-        );
-        originatorEv = null;
-      };
-      });
-
     
-    mcraControllers.controller('MainController', function($scope) {
-        // Appending dialog to document.body to cover sidenav in docs app
-        // Modal dialogs should fully cover application
-        // to prevent interaction outside of dialog
-    });
-
   mcraControllers.controller('EventDetailsController', function($scope, $http, $location, api) {
     if (!api.init()) { $location.path('/login'); } // force log in
     // TODO use services
