@@ -1,6 +1,6 @@
 <header class="page-header" md-page-header style="height: 50vh;">
   <div md-header-picture >
-    <img class="header-background" src="{{event.img}}" alt="">
+    <img class="header-background" src="{{event.img}}" alt="" style="">
   </div>
   <md-toolbar scroll>
     <div class="md-toolbar-tools">
@@ -8,17 +8,43 @@
         <md-icon aria-label="keyboard_arrow_left" class="material-icons">keyboard_arrow_left</md-icon>
       </md-button>
       <h2 md-header-title flex>{{event.name}}</h2>
-      <md-button ng-hide="joined" class="md-tools md-raised md-accent" aria-label="Join" ng-click="join()">
-        JOIN
-      </md-button>
-      <md-button ng-show="joined" class="md-tools md-raised md-warn" aria-label="Leave" ng-click="leave()">
-        LEAVE
-      </md-button>
-      <md-button class="md-tools" ng-click="flagToast()" aria-label="Edit Contact">
+      <md-button class="md-tools " ng-click="flagToast()" aria-label="Edit Contact">
         <md-icon aria-label="assistant Photo" class="material-icons">&#xE3A0;</md-icon>
       </md-button>
     </div>
   </md-toolbar>
+
+  <div class="" style="margin-top:48px;position:relative;">
+    
+     <div style="position:absolute;top:32px;right:16px;z-index:100;">
+      <md-button ng-hide="joined" class="md-button md-raised md-accent" aria-label="Join" ng-click="join()">
+        JOIN
+      </md-button>
+      <md-button ng-show="joined" class="md-button md-warn md-raised" aria-label="Leave" ng-click="leave()">
+        LEAVE
+      </md-button>
+    </div>
+    
+    <div class="event-details-header" layout="column" md-padding style="height:100%;">
+     
+     
+      <form class="pure-form" ng-submit="login()" ng-hide="api.init()">
+        <div layout="column">
+            <h2 class="header-text">{{event.name}}</h2>
+            <h3 class="header-text">{{event.location}}</h3>
+            <h3 class="header-text">{{event.datetime}}</h3>
+        </div>
+      </form>
+      <div ng-show="api.init()">
+        <button class="md-button" ng-click="logout()">Sign Out</button>
+      </div>
+      <div ng-show="errors">
+        <p ng-repeat="error in errors">{{error}}</p>
+      </div>
+
+    </div>
+
+  </div>
 </header>
 <md-content>
   <section>
@@ -26,14 +52,13 @@
     <md-subheader class="md-primary">Participants</md-subheader>
     <md-list layout-padding layout-wrap layout layout-align="center center" class="avatar-list">
       <md-list-item class="md-3-line" ng-repeat="user in users" layout="column" ng-click="userDetail(user.id)">
-        <md-icon ng-hide="user.username" style="font-size: 48px;" class="material-icons">account_circle</md-icon>
-        <img ng-show="user.username" ng-src="{{user.prefs.img}}" class="md-avatar" alt="{{user.username}}">
-        <p ng-show="user.username" class="avatar-text">{{ user.username }}</p>
+        <img ng-src="{{user.prefs.img}}" class="md-avatar" alt="{{user.username}}">
+        <p class="avatar-text">{{ user.username }}</p>
       </md-list-item>
     </md-list>
     </div>
   </section>
-  <section ng-show="joined">
+  <section>
     <md-subheader class="md-primary" sticky-state="next">Messages</md-subheader>
     <md-list layout-padding>
       <md-list-item class="md-3-line" ng-repeat="message in commentChain">
@@ -52,7 +77,7 @@
       </md-list-item>
     </md-list>
   </section>
-  <section ng-show="joined" class="dark-background">
+  <section class="dark-background">
       <div  layout-align="center center" layout flex="70" flex-offset="15">
       <md-input-container flex="grow">
         <input type="text" ng-model="message" placeholder="Say something!">
