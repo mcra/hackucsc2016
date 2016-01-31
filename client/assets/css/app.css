@@ -1,5 +1,4 @@
 /* CSS */
-
 [md-header-picture] {
     position: absolute;
     width:100%;
@@ -18,7 +17,11 @@
 .fixed-footer {
   position: fixed;
   bottom: 0px;
+}
 
+md-grid-list {
+  margin:5px;
+}
 md-grid-list md-grid-tile.event-tile {
 }
 md-grid-list md-grid-tile.event-tile .bg-image {
@@ -28,4 +31,7 @@ md-grid-list md-grid-tile.event-tile md-grid-tile-footer, md-grid-list md-grid-t
   height: initial;
   max-height: 50%;
   padding: 5px;
+}
+md-grid-list md-grid-tile md-grid-tile-footer h3, md-grid-list md-grid-tile md-grid-tile-footer h4, md-grid-list md-grid-tile md-grid-tile-header h3, md-grid-list md-grid-tile md-grid-tile-header h4 {
+  margin:0;
 }
