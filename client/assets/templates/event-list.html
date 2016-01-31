@@ -1,7 +1,100 @@
 <!-- <h1>{{title}}</h1>-->
  
-<div layout="column">
-
+<div>
+  <div layout="column" flex>
+     <div flex>
+      <form ng-submit="$event.preventDefault()">
+        <md-autocomplete
+            ng-disabled="ctrl.isDisabled"
+            md-no-cache="ctrl.noCache"
+            md-selected-item="ctrl.selectedItem"
+            md-search-text-change="ctrl.searchTextChange(ctrl.searchText)"
+            md-search-text="ctrl.searchText"
+            md-selected-item-change="ctrl.selectedItemChange(item)"
+            md-items="item in ctrl.querySearch(ctrl.searchText)"
+            md-item-text="item.display"
+            md-min-length="0"
+            placeholder="What do you want to do?">
+          <md-item-template>
+            <span md-highlight-text="ctrl.searchText" md-highlight-flags="^i">{{item.display}}</span>
+          </md-item-template>
+          <md-not-found>
+            No states matching "{{ctrl.searchText}}" were found.
+            <a ng-click="ctrl.newState(ctrl.searchText)">Create a new one!</a>
+          </md-not-found>
+        </md-autocomplete>
+      </form>
+    </div>
+    <div flex="shrink">
+      <form ng-submit="$event.preventDefault()">
+        <md-autocomplete
+            ng-disabled="ctrl.isDisabled"
+            md-no-cache="ctrl.noCache"
+            md-selected-item="ctrl.selectedItem"
+            md-search-text-change="ctrl.searchTextChange(ctrl.searchText)"
+            md-search-text="ctrl.searchText"
+            md-selected-item-change="ctrl.selectedItemChange(item)"
+            md-items="item in ctrl.querySearch(ctrl.searchText)"
+            md-item-text="item.display"
+            md-min-length="0"
+            placeholder="Where do you want to go?">
+          <md-item-template>
+            <span md-highlight-text="ctrl.searchText" md-highlight-flags="^i">{{item.display}}</span>
+          </md-item-template>
+          <md-not-found>
+            No states matching "{{ctrl.searchText}}" were found.
+            <a ng-click="ctrl.newState(ctrl.searchText)">Create a new one!</a>
+          </md-not-found>
+        </md-autocomplete>
+      </form>
+    </div>
+    <div flex>
+      <form ng-submit="$event.preventDefault()">
+        <md-autocomplete
+            ng-disabled="ctrl.isDisabled"
+            md-no-cache="ctrl.noCache"
+            md-selected-item="ctrl.selectedItem"
+            md-search-text-change="ctrl.searchTextChange(ctrl.searchText)"
+            md-search-text="ctrl.searchText"
+            md-selected-item-change="ctrl.selectedItemChange(item)"
+            md-items="item in ctrl.querySearch(ctrl.searchText)"
+            md-item-text="item.display"
+            md-min-length="0"
+            placeholder="Where do you want to go?">
+          <md-item-template>
+            <span md-highlight-text="ctrl.searchText" md-highlight-flags="^i">{{item.display}}</span>
+          </md-item-template>
+          <md-not-found>
+            No states matching "{{ctrl.searchText}}" were found.
+            <a ng-click="ctrl.newState(ctrl.searchText)">Create a new one!</a>
+          </md-not-found>
+        </md-autocomplete>
+      </form>
+    </div>
+    <div flex>
+      <form ng-submit="$event.preventDefault()">
+        <md-autocomplete
+            ng-disabled="ctrl.isDisabled"
+            md-no-cache="ctrl.noCache"
+            md-selected-item="ctrl.selectedItem"
+            md-search-text-change="ctrl.searchTextChange(ctrl.searchText)"
+            md-search-text="ctrl.searchText"
+            md-selected-item-change="ctrl.selectedItemChange(item)"
+            md-items="item in ctrl.querySearch(ctrl.searchText)"
+            md-item-text="item.display"
+            md-min-length="0"
+            placeholder="Where do you want to go?">
+          <md-item-template>
+            <span md-highlight-text="ctrl.searchText" md-highlight-flags="^i">{{item.display}}</span>
+          </md-item-template>
+          <md-not-found>
+            No states matching "{{ctrl.searchText}}" were found.
+            <a ng-click="ctrl.newState(ctrl.searchText)">Create a new one!</a>
+          </md-not-found>
+        </md-autocomplete>
+      </form>
+    </div>
+  </div>
   <md-content flex >
     <md-grid-list
         md-cols="2" md-cols-sm="3" md-cols-md="4" md-cols-gt-md="6"
@@ -35,67 +128,7 @@
   </md-content> 
  
  
-  <md-toolbar>
-    <div class="md-toolbar-tools" layout="row">
-
-       <div flex="25" ng-controller="FilterMenuCtrl as ctrl">
-        <md-menu>
-          <md-button aria-label="what" ng-click="ctrl.openMenu($mdOpenMenu, $event)">
-            What?
-          </md-button>
-          <md-menu-content width="5">
-           
-            <md-menu-item>
-              <md-input-container>
-                <label>What do you want to do?</label>
-                <input ng-change="makeQuery()" ng-model="query.name">
-              </md-input-container>
-            </md-menu-item>
-            
-          </md-menu-content>
-        </md-menu>
-      </div>
-      <div flex="25" ng-controller="FilterMenuCtrl as ctrl">
-        <md-menu>
-          <md-button aria-label="what" ng-click="ctrl.openMenu($mdOpenMenu, $event)">
-            Where?
-          </md-button>
-          <md-menu-content width="5">
-           
-            <md-menu-item>
-              <md-input-container>
-                <label>Where do you want to go?</label>
-                <input ng-change="makeQuery()" ng-model="query.location">
-              </md-input-container>
-            </md-menu-item>
-            
-          </md-menu-content>
-        </md-menu>
-      </div>
-      <div flex="25" ng-controller="FilterMenuCtrl as ctrl">
-        <md-menu>
-          <md-button aria-label="what" ng-click="ctrl.openMenu($mdOpenMenu, $event)">
-            When?
-          </md-button>
-          <md-menu-content width="5">
-           
-            <md-menu-item>
-              <md-input-container>
-                <label>When do you want to go?</label>
-                <input ng-change="makeQuery()" ng-model="query.date">
-              </md-input-container>
-            </md-menu-item>
-            
-          </md-menu-content>
-        </md-menu>
-      </div>
-      <div flex="25">
-       <md-button>
-         Who?
-       </md-button>
-      </div>
-    </div>
-  </md-toolbar>
+  
     
   
 </div>
